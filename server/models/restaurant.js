@@ -11,10 +11,22 @@ const restaurantSchema = new mongoose.Schema({
         type:String,
         required: true,
         unique: true,
+        validate: {
+            validator: (val)=>{
+                const re = '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$';
+                return re.test(val);
+            }
+        }
     },
     password: { 
         type:String,
         required: true,
+        validate: {
+            validator: (val)=>{
+                const re = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
+                return re.test(val);
+            }
+        }
     },
     phone: { 
         type: Number,

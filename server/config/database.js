@@ -5,10 +5,18 @@ const blueBird = require('bluebird');
 
 mongoose.promise = blueBird;
 
-let URI = `${process.env.DB_HOST}/${process.env.DB_NAME}`;
+let URI = process.env.DB_URI;
 
-mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true ,useFindAndModify: false });
+const config = { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true,
+};
 
-const DB = mongoose.connection;
+//     useFindAndModify: false 
 
-module.exports = DB;
+mongoose.connect(URI, config);
+
+const db = mongoose.connection;
+
+module.exports = db;
+
