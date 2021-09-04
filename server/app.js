@@ -44,7 +44,7 @@ db.on('error', (err) => {
   process.exit(1);
 });
 
-app.use('/', indexRouter);
+app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
 
 // catch 404 and forward to error handler

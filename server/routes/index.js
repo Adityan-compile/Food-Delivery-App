@@ -1,10 +1,12 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
+var authenticate = require("../middleware/authenticator.js");
+
 /* GET home page. */
-router.get('/', function(req, res) {
+router.route("/items/all").get(authenticate, function (req, res) {
   res.json({
-    message:'respond with a resource'
+    items: [],
   });
 });
 

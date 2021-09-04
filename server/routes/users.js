@@ -4,10 +4,10 @@ var router = express.Router();
 const { login, signup, regenerateToken } = require("../controllers/auth.js");
 
 
-router.post("/login", login);
+router.route("/login").post(login);
 
-router.post("/register", signup);
+router.route("/register").post(signup);
 
-router.post("/tokens/regenerate", regenerateToken);
+router.route("/tokens/regenerate").post(regenerateToken);
 
 module.exports = router;
