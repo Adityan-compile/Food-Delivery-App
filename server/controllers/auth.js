@@ -6,6 +6,7 @@ const {
   generateAccessToken,
   generateRefreshToken,
   verifyToken,
+  removeToken,
 } = require("../helpers/functions.js");
 
 const ENV = process.env;
@@ -113,7 +114,7 @@ exports.regenerateToken = (req, res) => {
     return res.status(401).json({ status: 401, message: "Bad Request" });
 
   verifyToken(data.refreshToken)
-    .then(async(user) => {
+    .then(async (user) => {
       var accessToken = await generateAccessToken(user, "60m");
       res.status(200).json({
         status: 200,
@@ -125,4 +126,14 @@ exports.regenerateToken = (req, res) => {
     .catch((err) => {
       res.status(401).json({ status: 401, message: "Invalid Refresh Token" });
     });
+};
+
+exports.logout = async (req, res) => {
+  const { refreshToken } = req.body;
+  try {
+    await removeToken(refreshToken);
+    res.status(200).json({ status: 200, message: "Logout Successful" });
+  } catch (e) {
+    res.status(204).json({ status: 204, message: "Logout Failed" });
+  }
 };
