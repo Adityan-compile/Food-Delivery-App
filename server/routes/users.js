@@ -10,6 +10,8 @@ const {
 
 const { deleteAccount } = require("../controllers/users.js");
 
+const authenticate = require("../middleware/authenticator");
+
 /*
  * Register Routes and assign to controllers
  */
@@ -21,6 +23,6 @@ router.route("/tokens/regenerate").post(regenerateToken);
 
 router.route("/logout").post(logout);
 
-router.route("/account/delete").post(deleteAccount);
+router.route("/account/delete").post(authenticate, deleteAccount);
 
 module.exports = router;

@@ -9,7 +9,7 @@
    - [x] Regenerate Token
    - [x] Logout
    - [x] Delete Account
-   - [] Edit Account
+   - [x] Edit Account
 
 2. ### Orders
 
@@ -46,24 +46,15 @@
 1.  ### Auth/Account
 
     - [] Signup
+       - [] Upload Cover Photo
     - [] Login
     - [] Logout
     - [] Transfer to Bank
     - [] Delete Account
 
-2.  ### orders
-
-    - [] View orders
-    - [] Decline Order
-    - [] Set Order Status
-      - **Placed**
-      - **Processing**
-      - **On The Way**
-      - **Delivered**
-      - **Declined**
-
-3.  ### Items
+2.  ### Items
     - [] Add Items
+      - [] Upload Image
       - **Available Portions**
       - **Delivery Charge**
       - **Original Price**
@@ -74,3 +65,15 @@
       - **Delivery Charge**
       - **Original Price**
       - **Current Price**
+
+3.  ### orders
+
+    - [] View orders
+    - [] Decline Order
+    - [] Set Order Status
+      - **Placed**
+      - **Processing**
+      - **On The Way**
+      - **Delivered**
+      - **Declined**
+
