@@ -1,5 +1,6 @@
 # Features
 
+
 ## Users
 
 1. ### Auth/Account
@@ -32,6 +33,7 @@
 4. ### Restaurants
 
    - [] View Restaurants
+   - [] Search Restaurants
    - [] Add reviews
    - [] Browse Restaurants
 
@@ -52,7 +54,7 @@
     - [] Signup
       - [] Upload Cover Photo
     - [] Login
-    - [] Logout
+    - [x] Logout
     - [] Transfer to Bank
     - [] Delete Account
 
