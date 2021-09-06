@@ -11,9 +11,13 @@
    - [x] Delete Account
    - [x] Edit Account
 
-2. ### Orders               
+2. ### Items
 
    - [x] Get Items
+   - [x] Search Items
+
+3. ### Orders
+
    - [] Place orders
      - [] Payment Integration
      - [] View Order Status
@@ -25,13 +29,13 @@
    - [] View Order history
    - [] Cancel Order
 
-3. ### Restaurants
+4. ### Restaurants
 
    - [] View Restaurants
    - [] Add reviews
    - [] Browse Restaurants
 
-4. ### Cart
+5. ### Cart
    - [] Add to Cart
    - [] Remove from Cart
    - [] Change Quantity
@@ -46,13 +50,14 @@
 1.  ### Auth/Account
 
     - [] Signup
-       - [] Upload Cover Photo
+      - [] Upload Cover Photo
     - [] Login
     - [] Logout
     - [] Transfer to Bank
     - [] Delete Account
 
 2.  ### Items
+
     - [] Add Items
       - [] Upload Image
       - **Available Portions**
@@ -76,4 +81,3 @@
       - **On The Way**
       - **Delivered**
       - **Declined**
-
