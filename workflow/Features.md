@@ -11,9 +11,9 @@
    - [x] Delete Account
    - [x] Edit Account
 
-2. ### Orders
+2. ### Orders               
 
-   - [] Get Items
+   - [x] Get Items
    - [] Place orders
      - [] Payment Integration
      - [] View Order Status

@@ -6,9 +6,9 @@ const {
   signup,
   logout,
   regenerateToken,
-} = require("../controllers/auth.js");
+} = require("../controllers/authController.js");
 
-const { deleteAccount } = require("../controllers/users.js");
+const { deleteAccount, editAccount } = require("../controllers/userController.js");
 
 const authenticate = require("../middleware/authenticator");
 
@@ -24,5 +24,7 @@ router.route("/tokens/regenerate").post(regenerateToken);
 router.route("/logout").post(logout);
 
 router.route("/account/delete").post(authenticate, deleteAccount);
+
+router.route("/account/edit").patch(authenticate, editAccount);
 
 module.exports = router;
