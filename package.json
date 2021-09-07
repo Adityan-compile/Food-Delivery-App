@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "server": "cd server/ && npm run dev-server"
+    "server": "cd server/ && npm run dev-server",
+    "format": "./node_modules/.bin/prettier --write --semi .",
+    "lint": "standard --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "eslint": "^7.32.0",
-    "prettier": "^2.3.2"
-  }
+    "prettier": "^2.3.2",
+    "standard": "^16.0.3"
+  },
+  "devDependencies": {}
 }

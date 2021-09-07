@@ -1,11 +1,11 @@
-var express = require("express");
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var authenticate = require("../middleware/authenticator.js");
+const { getItems } = require('../controllers/itemController');
+const { getRestaurants } = require('../controllers/restaurantController');
 
-const { getItems } = require("../controllers/itemsController");
+router.route('/items/all').get(getItems);
 
-/* GET home page. */
-router.route("/items/all").get(getItems);
+router.route('/restaurants/all').get(getRestaurants);
 
 module.exports = router;

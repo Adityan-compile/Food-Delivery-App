@@ -1,6 +1,5 @@
 # Features
 
-
 ## Users
 
 1. ### Auth/Account
@@ -32,10 +31,10 @@
 
 4. ### Restaurants
 
+   - [x] Search Restaurants
+   - [x] Browse Restaurants
    - [] View Restaurants
-   - [] Search Restaurants
    - [] Add reviews
-   - [] Browse Restaurants
 
 5. ### Cart
    - [] Add to Cart

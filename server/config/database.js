@@ -1,22 +1,21 @@
-'use strict';
+'use strict'
 
-const mongoose = require('mongoose');
-const blueBird = require('bluebird');
+const mongoose = require('mongoose')
+const blueBird = require('bluebird')
 
-mongoose.promise = blueBird;
+mongoose.promise = blueBird
 
-let URI = process.env.DB_URI;
+const URI = process.env.DB_URI
 
-const config = { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true,
-};
+const config = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}
 
-//     useFindAndModify: false 
+//     useFindAndModify: false
 
-mongoose.connect(URI, config);
+mongoose.connect(URI, config)
 
-const db = mongoose.connection;
+const db = mongoose.connection
 
-module.exports = db;
-
+module.exports = db
