@@ -1,9 +1,13 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
+function calculateAverage(total, n) {
+  return total / n;
+}
 
 const restaurantSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
@@ -11,10 +15,10 @@ const restaurantSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator: (val) => {
-        const re = '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$'
-        return re.test(val)
-      }
-    }
+        const re = '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$';
+        return re.test(val);
+      },
+    },
   },
   password: {
     type: String,
@@ -22,31 +26,43 @@ const restaurantSchema = new mongoose.Schema({
     validate: {
       validator: (val) => {
         const re =
-          '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'
-        return re.test(val)
-      }
-    }
+          '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
+        return re.test(val);
+      },
+    },
   },
   phone: {
     type: Number,
-    min: [10, 'Phone Number Should be atleast 10 Digits Long']
+    min: [10, 'Phone Number Should be atleast 10 Digits Long'],
   },
   address: {
     type: String,
-    required: true
+    required: true,
   },
   zipcode: {
     type: Number,
-    required: true
+    required: true,
   },
   rating: {
-    type: Number
+    type: Number,
   },
   reviewers: [
     {
-      type: mongoose.Types.ObjectId
-    }
-  ]
-})
+      type: mongoose.Types.ObjectId,
+    },
+  ],
+  // average: {
+  //   type: Number,
+  //   default: () => {
+  //     let total = 0;
 
-module.exports = mongoose.model('restaurant', restaurantSchema)
+  //     this.reviews.foreach((item) => {
+  //       total += item.review;
+  //     });
+
+  //     return calculateAverage(total, this.reviews.length);
+  //   },
+  // },
+});
+
+module.exports = mongoose.model('restaurant', restaurantSchema);

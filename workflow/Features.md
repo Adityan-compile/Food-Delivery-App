@@ -16,7 +16,14 @@
    - [x] Get Items
    - [x] Search Items
 
-3. ### Orders
+3. ### Restaurants
+
+   - [x] Search Restaurants
+   - [x] Browse Restaurants
+   - [x] View Restaurant
+   - [] Add reviews
+
+4. ### Orders
 
    - [] Place orders
      - [] Payment Integration
@@ -28,13 +35,6 @@
        - **Declined**
    - [] View Order history
    - [] Cancel Order
-
-4. ### Restaurants
-
-   - [x] Search Restaurants
-   - [x] Browse Restaurants
-   - [] View Restaurants
-   - [] Add reviews
 
 5. ### Cart
    - [] Add to Cart
