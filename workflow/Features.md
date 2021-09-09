@@ -50,9 +50,9 @@
 
 1.  ### Auth/Account
 
-    - [] Signup
+    - [x] Signup
       - [] Upload Cover Photo
-    - [] Login
+    - [x] Login
     - [x] Logout
     - [] Transfer to Bank
     - [] Delete Account
@@ -82,3 +82,8 @@
       - **On The Way**
       - **Delivered**
       - **Declined**
+
+
+## General
+
+  - [x] User Role Management
