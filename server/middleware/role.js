@@ -1,4 +1,4 @@
-exports.checkRole =
+const manageRole =
   (role = 'u') =>
   (req, res, next) => {
     const user = req.user;
@@ -19,3 +19,5 @@ exports.checkRole =
       });
     }
   };
+
+module.exports = manageRole;

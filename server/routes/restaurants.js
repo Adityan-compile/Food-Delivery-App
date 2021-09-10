@@ -11,10 +11,12 @@ const {
 
 const authenticate = require('../middleware/authenticator');
 
+const manageRole = require('../middleware/role');
+
 router.route('/all').get(getRestaurants);
 router.route('/').get(getRestaurantById);
 router.route('/login').post(login);
 router.route('/signup').post(signup);
-router.route('/reviews/new').post(authenticate, addReview);
+router.route('/reviews/new').post([authenticate, manageRole('u')], addReview);
 
 module.exports = router;
