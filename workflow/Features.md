@@ -21,7 +21,7 @@
    - [x] Search Restaurants
    - [x] Browse Restaurants
    - [x] View Restaurant
-   - [] Add reviews
+   - [x] Add reviews
 
 4. ### Orders
 
@@ -55,6 +55,7 @@
     - [x] Login
     - [x] Logout
     - [] Transfer to Bank
+    - [] Edit Account
     - [] Delete Account
 
 2.  ### Items

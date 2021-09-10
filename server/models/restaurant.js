@@ -46,7 +46,7 @@ const restaurantSchema = new mongoose.Schema({
   rating: {
     type: Number,
   },
-  reviewes: [
+  reviews: [
     {
       type: mongoose.Types.ObjectId,
       ref: 'review',

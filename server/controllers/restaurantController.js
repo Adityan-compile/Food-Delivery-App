@@ -82,12 +82,26 @@ exports.addReview = async (req, res) => {
       .json({ status: 409, message: 'Review Already Found' });
   }
 
-  reviews.reviews.push({
+  let newReview = new review({
+    restaurant: body.restaurant,
     user: user._id,
     review: body.review,
   });
 
-  res.status(200).json({ status: 200, message: 'Review Added successfully' });
+  newReview.save((err, doc) => {
+    if (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ status: 500, message: 'Internal Server Error' });
+    } else {
+      res.status(200).json({
+        status: 200,
+        message: 'Review Added successfully',
+        review: doc,
+      });
+    }
+  });
 };
 
 exports.login = (req, res) => {
@@ -154,7 +168,7 @@ exports.signup = async (req, res) => {
 
   body.password = await bcrypt.hash(body.password, 10);
 
-  const newRestaurant = new user({
+  const newRestaurant = new restaurant({
     name: body.name,
     email: body.email,
     password: body.password,
@@ -162,6 +176,7 @@ exports.signup = async (req, res) => {
     address: body.address,
     zipcode: body.zip,
     rating: 0,
+    reviews: [],
   });
   newRestaurant.save(async (err, saved) => {
     if (err) {
