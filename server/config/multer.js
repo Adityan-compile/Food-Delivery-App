@@ -1,8 +1,8 @@
 'use strict';
 
-const multer, { memoryStorage } = require('multer');
+const multer = require('multer');
 
 module.exports = multer({
-    storage: memoryStorage()
-}).single('image');
+    storage: multer.memoryStorage()
+});
 

@@ -51,7 +51,7 @@
 1.  ### Auth/Account
 
     - [x] Signup
-      - [] Upload Cover Photo
+      - [x] Upload Cover Photo
     - [x] Login
     - [x] Logout
     - [] Transfer to Bank
@@ -84,7 +84,6 @@
       - **Delivered**
       - **Declined**
 
-
 ## General
 
-  - [x] User Role Management
+- [x] User Role Management

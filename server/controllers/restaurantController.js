@@ -7,7 +7,10 @@ const bcrypt = require('bcrypt');
 const {
   generateAccessToken,
   generateRefreshToken,
+  dataURI,
 } = require('../utils/helpers.js');
+
+const uploadFile = require('../utils/upload');
 
 exports.getRestaurants = (req, res) => {
   let count = 0;
@@ -166,6 +169,20 @@ exports.signup = async (req, res) => {
     });
   }
 
+  let image = '';
+
+  if (req.file) {
+    uploadFile
+      .then((res) => {
+        image = res.url;
+      })
+      .catch((err) => {
+        return res
+          .status(500)
+          .json({ status: 500, message: 'Internal Server Error' });
+      });
+  }
+
   body.password = await bcrypt.hash(body.password, 10);
 
   const newRestaurant = new restaurant({
@@ -177,10 +194,11 @@ exports.signup = async (req, res) => {
     zipcode: body.zip,
     rating: 0,
     reviews: [],
+    image: image,
   });
+
   newRestaurant.save(async (err, saved) => {
     if (err) {
-      console.log(err);
       res.status(401);
       res.json({
         status: 401,

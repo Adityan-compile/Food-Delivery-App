@@ -52,6 +52,10 @@ const restaurantSchema = new mongoose.Schema({
       ref: 'review',
     },
   ],
+  image: {
+    type: String,
+    default: ""
+  },
   role: {
     type: String,
     default: 'r',

@@ -3,7 +3,7 @@
 | S.NO | Item                        | Status |
 | ---- | --------------------------- | ------ |
 | 1    | Start Working on Server     | [x]    |
-| 2    | Setup Multer and Cloudinary | []     |
+| 2    | Setup Multer and Cloudinary | [x]    |
 | 3    | Start Working on User App   | []     |
 | 4    | Start Working on Admin App  | []     |
 | 5    | Connect API to Client       | []     |
