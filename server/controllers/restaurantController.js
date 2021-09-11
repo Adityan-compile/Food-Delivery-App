@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const {
   generateAccessToken,
   generateRefreshToken,
-} = require('../helpers/functions.js');
+} = require('../utils/helpers.js');
 
 exports.getRestaurants = (req, res) => {
   let count = 0;

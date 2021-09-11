@@ -1,7 +1,9 @@
-'use strict'
+'use strict';
 
-const jwt = require('jsonwebtoken')
-const token = require('../models/token')
+const jwt = require('jsonwebtoken');
+const token = require('../models/token');
+const dataUri = require('datauri');
+const path = require('path');
 
 exports.generateAccessToken = (user, expiry) => {
   return new Promise((resolve, reject) => {
@@ -9,32 +11,32 @@ exports.generateAccessToken = (user, expiry) => {
       user,
       process.env.ACCESS_TOKEN_KEY,
       {
-        expiresIn: expiry
+        expiresIn: expiry,
       },
       (err, generatedToken) => {
-        if (err) return resolve(null)
-        resolve(generatedToken)
-      }
-    )
-  })
-}
+        if (err) return resolve(null);
+        resolve(generatedToken);
+      },
+    );
+  });
+};
 
 exports.generateRefreshToken = (user) => {
   return new Promise((resolve, reject) => {
-    user.date_initialized = Date.now()
+    user.date_initialized = Date.now();
     jwt.sign(user, process.env.REFRESH_TOKEN_KEY, (err, generatedToken) => {
-      if (err) return resolve(null)
-      const newToken = new token({ token: generatedToken })
+      if (err) return resolve(null);
+      const newToken = new token({ token: generatedToken });
       newToken.save(async (err, savedToken) => {
         if (err) {
-          console.log(err)
-          resolve(null)
+          console.log(err);
+          resolve(null);
         }
-        resolve(savedToken.token)
-      })
-    })
-  })
-}
+        resolve(savedToken.token);
+      });
+    });
+  });
+};
 
 exports.verifyToken = (refreshToken) => {
   return new Promise((resolve, reject) => {
@@ -47,21 +49,21 @@ exports.verifyToken = (refreshToken) => {
             refreshToken,
             process.env.REFRESH_TOKEN_KEY,
             (err, user) => {
-              if (err) return reject('error')
-              delete user.iat
-              delete user.exp
-              resolve(user)
-            }
-          )
+              if (err) return reject('error');
+              delete user.iat;
+              delete user.exp;
+              resolve(user);
+            },
+          );
         } else {
-          reject('error')
+          reject('error');
         }
       })
       .catch((err) => {
-        reject(err)
-      })
-  })
-}
+        reject(err);
+      });
+  });
+};
 
 exports.deleteToken = (refreshToken) => {
   return new Promise((resolve, reject) => {
@@ -69,11 +71,19 @@ exports.deleteToken = (refreshToken) => {
       token
         .remove({ token: refreshToken })
         .then((deletedToken) => {
-          resolve(null)
+          resolve(null);
         })
-        .catch((err) => reject(err))
+        .catch((err) => reject(err));
     } catch (e) {
-      reject(e)
+      reject(e);
     }
-  })
-}
+  });
+};
+
+exports.dataURI = (req) => {
+  const uri = new dataUri().format(
+    path.extname(req.file.originalname).toString(),
+    req.file.buffer,
+  );
+  return uri;
+};
