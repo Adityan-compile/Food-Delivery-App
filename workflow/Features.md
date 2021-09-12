@@ -54,9 +54,9 @@
       - [x] Upload Cover Photo
     - [x] Login
     - [x] Logout
+    - [x] Edit Account
+    - [x] Delete Account
     - [] Transfer to Bank
-    - [] Edit Account
-    - [] Delete Account
 
 2.  ### Items
 
