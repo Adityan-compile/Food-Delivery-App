@@ -139,12 +139,12 @@ exports.login = (req, res) => {
               refreshToken: refreshToken,
             });
           } else {
-            res
+            return res
               .status(401)
               .json({ status: 401, message: 'Authentication Failed' });
           }
         } catch (e) {
-          res
+          return res
             .status(500)
             .json({ status: 500, message: 'Internal Server Error' });
         }
@@ -156,10 +156,13 @@ exports.login = (req, res) => {
 };
 
 exports.signup = async (req, res) => {
-  const body = req.body;
+  let body = req.body;
   if (!body || Object.keys(body).length === 0) {
     return res.status(400).json({ status: 400, message: 'Bad Request' });
   }
+
+  if (!req.file)
+    return res.status(400).json({ status: 400, message: 'Image Required' });
 
   const count = await restaurant.countDocuments({ email: body.email });
   if (count > 0) {
@@ -169,58 +172,58 @@ exports.signup = async (req, res) => {
     });
   }
 
-  let image = '';
-
-  if (req.file) {
-    uploadFile
-      .then((res) => {
-        image = res.url;
-      })
-      .catch((err) => {
+  uploadFile(req.file)
+    .then(async (uploadedFile) => {
+      // image = res.url;
+      // console.log('image', image);
+      try {
+        body.password = await bcrypt.hash(body.password, 10);
+      } catch (err) {
         return res
           .status(500)
-          .json({ status: 500, message: 'Internal Server Error' });
-      });
-  }
-
-  body.password = await bcrypt.hash(body.password, 10);
-
-  const newRestaurant = new restaurant({
-    name: body.name,
-    email: body.email,
-    password: body.password,
-    phone: body.phone,
-    address: body.address,
-    zipcode: body.zip,
-    rating: 0,
-    reviews: [],
-    image: image,
-  });
-
-  newRestaurant.save(async (err, saved) => {
-    if (err) {
-      res.status(401);
-      res.json({
-        status: 401,
-        message: 'Error Creating User',
-      });
-    } else {
-      saved.password = undefined;
-      saved = saved.toJSON();
-      const accessToken = await generateAccessToken(saved, '60m');
-      const refreshToken = await generateRefreshToken(saved);
-      if (refreshToken === null || accessToken === null) {
-        return res
-          .status(401)
-          .json({ status: 401, message: 'Error Creating User' });
+          .json({ status: 500, message: 'Error Hashing Password' });
       }
-      res.status(201).json({
-        status: 201,
-        message: 'Restaurant Created Successfully',
-        restaurant: saved,
-        accessToken: accessToken,
-        refreshToken: refreshToken,
+
+      const newRestaurant = new restaurant({
+        name: body.name,
+        email: body.email,
+        password: body.password,
+        phone: body.phone,
+        address: body.address,
+        zipcode: body.zip,
+        rating: 0,
+        reviews: [],
+        image: uploadedFile.url,
       });
-    }
-  });
+
+      newRestaurant.save(async (err, saved) => {
+        if (err) {
+          return res.status(401).json({
+            status: 401,
+            message: 'Error Creating User',
+          });
+        }
+        saved.password = undefined;
+        saved = saved.toJSON();
+        const accessToken = await generateAccessToken(saved, '60m');
+        const refreshToken = await generateRefreshToken(saved);
+        if (refreshToken === null || accessToken === null) {
+          return res
+            .status(401)
+            .json({ status: 401, message: 'Error Creating User' });
+        }
+        res.status(201).json({
+          status: 201,
+          message: 'Restaurant Created Successfully',
+          restaurant: saved,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        });
+      });
+    })
+    .catch((err) => {
+      return res
+        .status(500)
+        .json({ status: 500, message: 'Internal Server Error' });
+    });
 };

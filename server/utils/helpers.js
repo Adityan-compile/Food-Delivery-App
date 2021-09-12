@@ -2,8 +2,6 @@
 
 const jwt = require('jsonwebtoken');
 const token = require('../models/token');
-const dataUri = require('datauri');
-const path = require('path');
 
 exports.generateAccessToken = (user, expiry) => {
   return new Promise((resolve, reject) => {
@@ -78,12 +76,4 @@ exports.deleteToken = (refreshToken) => {
       reject(e);
     }
   });
-};
-
-exports.dataURI = (req) => {
-  const uri = new dataUri().format(
-    path.extname(req.file.originalname).toString(),
-    req.file.buffer,
-  );
-  return uri;
 };
