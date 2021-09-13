@@ -1,7 +1,7 @@
 'use strict'
 
 const user = require('../models/user')
-const { deleteToken } = require('../helpers/functions.js')
+const { deleteToken } = require('../utils/helpers.js')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 

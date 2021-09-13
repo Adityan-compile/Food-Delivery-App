@@ -19,8 +19,6 @@ if (env.error) {
   console.info('Environment Variables Loaded Successfully')
 }
 
-const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/users')
 
 const app = express()
 
@@ -44,8 +42,13 @@ db.on('error', (err) => {
   process.exit(1)
 })
 
+const indexRouter = require('./routes/index')
+const usersRouter = require('./routes/users')
+const restaurantsRouter = require('./routes/restaurants');
+
 app.use('/api', indexRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/restaurants', restaurantsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

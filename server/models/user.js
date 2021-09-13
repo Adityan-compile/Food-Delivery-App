@@ -19,7 +19,11 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Types.ObjectId,
       ref: 'order'
     }
-  ]
+  ],
+  role: {
+    type: String,
+    default: 'u'    
+  }
 })
 
 module.exports = mongoose.model('user', userSchema)

@@ -16,7 +16,14 @@
    - [x] Get Items
    - [x] Search Items
 
-3. ### Orders
+3. ### Restaurants
+
+   - [x] Search Restaurants
+   - [x] Browse Restaurants
+   - [x] View Restaurant
+   - [x] Add reviews
+
+4. ### Orders
 
    - [] Place orders
      - [] Payment Integration
@@ -28,13 +35,6 @@
        - **Declined**
    - [] View Order history
    - [] Cancel Order
-
-4. ### Restaurants
-
-   - [x] Search Restaurants
-   - [x] Browse Restaurants
-   - [] View Restaurants
-   - [] Add reviews
 
 5. ### Cart
    - [] Add to Cart
@@ -50,12 +50,13 @@
 
 1.  ### Auth/Account
 
-    - [] Signup
-      - [] Upload Cover Photo
-    - [] Login
+    - [x] Signup
+      - [x] Upload Cover Photo
+    - [x] Login
     - [x] Logout
+    - [x] Edit Account
+    - [x] Delete Account
     - [] Transfer to Bank
-    - [] Delete Account
 
 2.  ### Items
 
@@ -82,3 +83,7 @@
       - **On The Way**
       - **Delivered**
       - **Declined**
+
+## General
+
+- [x] User Role Management

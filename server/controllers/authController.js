@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const user = require('../models/user')
 const bcrypt = require('bcrypt')
@@ -7,7 +7,7 @@ const {
   generateRefreshToken,
   verifyToken,
   removeToken
-} = require('../helpers/functions.js')
+} = require('../utils/helpers.js')
 
 exports.login = (req, res) => {
   const body = req.body
