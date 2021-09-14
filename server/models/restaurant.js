@@ -33,7 +33,7 @@ const restaurantSchema = new mongoose.Schema({
   },
   phone: {
     type: Number,
-    min: [10, 'Phone Number Should be atleast 10 Digits Long'],
+    min: [0000000000, 'Phone Number Should be atleast 10 Digits Long'],
   },
   address: {
     type: String,
