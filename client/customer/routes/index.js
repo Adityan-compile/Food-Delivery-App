@@ -1,9 +1,9 @@
-import React from 'react'
-import { View } from 'react-native'
-
+import Login from '../screens/Login';
 import { NavigationContainer } from '@react-navigation/native';
+import React from 'react'
+import Signup from '../screens/Signup';
+import { View } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from '../pages/Login';
 
 const Routes = () => {
     const Stack = createStackNavigator();
@@ -12,6 +12,7 @@ const Routes = () => {
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen name="Login" component={Login}></Stack.Screen>
+                    <Stack.Screen name="Signup" component={Signup}></Stack.Screen>
                 </Stack.Navigator>
             </NavigationContainer>
         </View>

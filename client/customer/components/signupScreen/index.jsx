@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
-// import Icon from 'react-native-vector-icons/FontAwesome';
 import {Button} from 'react-native-elements';
 import Logo from '../../assets/logo.png';
 import styles from './styles.js';
 import {useNavigation} from '@react-navigation/native';
 
-const LoginScreen = () => {
+const SignupScreen = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -25,6 +25,11 @@ const LoginScreen = () => {
       <ScrollView>
         <KeyboardAvoidingView>
           <Image source={Logo} style={styles.logo}></Image>
+          <TextInput
+            placeholder="Name"
+            value={name}
+            onChangeText={setName}
+            style={styles.input}></TextInput>
           <TextInput
             placeholder="Email"
             keyboardType="email-address"
@@ -37,9 +42,9 @@ const LoginScreen = () => {
             value={password}
             onChangeText={setPassword}
             style={styles.input}></TextInput>
-          <Button title="Login" buttonStyle={styles.button}></Button>
-          <Text style={styles.link} onPress={() => navigate('Signup')}>
-            Don't Have an Account? Signup
+          <Button title="Join Us" buttonStyle={styles.button}></Button>
+          <Text style={styles.link} onPress={() => navigate('Login')}>
+            Have an Account? Login
           </Text>
         </KeyboardAvoidingView>
       </ScrollView>
@@ -47,4 +52,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default SignupScreen;

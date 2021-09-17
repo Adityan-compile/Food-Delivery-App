@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         height: systemHeight/3,
         width: systemWidth/2,
         padding: 20,
-        marginTop: 50,
+        marginTop: 20,
         alignSelf: 'center'
     },
     input: {
