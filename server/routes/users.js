@@ -25,8 +25,6 @@ router.route('/register').post(signup);
 
 router.route('/tokens/regenerate').post(authenticate, regenerateToken);
 
-router.route('/logout').post(logout);
-
 router
   .route('/account/delete')
   .post([authenticate, manageRole('u')], deleteAccount);

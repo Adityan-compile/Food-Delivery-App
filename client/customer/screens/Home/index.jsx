@@ -4,8 +4,8 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <View>
-      <Text></Text>
+    <View style={{flex: 1}}>
+      <Text>Home</Text>
     </View>
   );
 };

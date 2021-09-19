@@ -1,11 +1,10 @@
 import auth from '../services/auth';
-import {useMemo} from 'react';
 
-const AuthProvider = useMemo(() => ({
+const AuthProvider = () => ({
   login: auth.login,
   signup: auth.signup,
   logout: auth.logout,
   getAuthState: auth.getAuthState,
-}));
+});
 
 export default AuthProvider;

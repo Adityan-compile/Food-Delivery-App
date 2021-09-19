@@ -1,5 +1,6 @@
 import AuthContext from '../store/contexts/authContext';
 import AuthProvider from '../store/providers/AuthProvider';
+import Home from '../screens/Home';
 import Login from '../screens/Login';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
@@ -16,6 +17,7 @@ const Routes = () => {
           <Stack.Navigator>
             <Stack.Screen name="Login" component={Login}></Stack.Screen>
             <Stack.Screen name="Signup" component={Signup}></Stack.Screen>
+            <Stack.Screen name="Home" component={Home}></Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>
