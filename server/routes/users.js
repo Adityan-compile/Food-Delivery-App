@@ -4,7 +4,6 @@ const router = express.Router();
 const {
   login,
   signup,
-  logout,
   regenerateToken,
 } = require('../controllers/authController.js');
 

@@ -1,8 +1,9 @@
-import Config from 'react-native-config';
+// import Config from 'react-native-config';
 import axios from 'axios';
+import constants from '../../constants';
 import storage from '../../storage';
 
-axios.defaults.baseURL = Config.API_URL;
+axios.defaults.baseURL = constants.API_URL;
 
 const post = axios.post;
 
@@ -63,7 +64,27 @@ const auth = {
         .catch(err => reject(err));
     });
   },
-  getAuthState: () => {},
+  getAuthState: () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const user = await storage.get('USER');
+        if (!user) {
+          resolve({
+            authenticated: false,
+          });
+        } else {
+          resolve({
+            authenticated: true,
+            user: user,
+          });
+        }
+      } catch (e) {
+        resolve({
+          authenticated: false,
+        });
+      }
+    });
+  },
 };
 
 export default auth;

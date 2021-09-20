@@ -4,6 +4,7 @@ import {
   ScrollView,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React, {useState} from 'react';
@@ -43,9 +44,11 @@ const SignupScreen = () => {
             onChangeText={setPassword}
             style={styles.input}></TextInput>
           <Button title="Join Us" buttonStyle={styles.button}></Button>
-          <Text style={styles.link} onPress={() => navigate('Login')}>
-            Have an Account? Login
-          </Text>
+          <TouchableOpacity>
+            <Text style={styles.link} onPress={() => navigate('Login')}>
+              Have an Account? Login
+            </Text>
+          </TouchableOpacity>
         </KeyboardAvoidingView>
       </ScrollView>
     </View>

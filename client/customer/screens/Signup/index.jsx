@@ -1,14 +1,8 @@
-import React, {useEffect} from 'react';
-
+import React from 'react';
 import SignupScreen from '../../components/signupScreen';
 import {View} from 'react-native';
 
-const Signup = ({navigation}) => {
-  useEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, [navigation]);
+const Signup = () => {
   return (
     <View style={{flex: 1}}>
       <SignupScreen></SignupScreen>

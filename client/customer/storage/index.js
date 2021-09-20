@@ -1,11 +1,12 @@
-import {AsyncStorage as store} from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const storage = {
   get: key => {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await store.getItem(JSON.parse(key));
-        resolve(res);
+        const res = await AsyncStorage.getItem(key);
+        const parsed = JSON.parse(res);
+        resolve(parsed);
       } catch (e) {
         reject(e);
       }
@@ -14,7 +15,7 @@ const storage = {
   set: (key, value) => {
     return new Promise(async (resolve, reject) => {
       try {
-        await store.setItem(JSON.stringify(key), value);
+        await AsyncStorage.setItem(key, JSON.stringify(value));
         resolve(null);
       } catch (e) {
         reject(e);
@@ -24,7 +25,7 @@ const storage = {
   remove: key => {
     return new Promise(async (resolve, reject) => {
       try {
-        await store.removeItem(key);
+        await AsyncStorage.removeItem(key);
         resolve(null);
       } catch (e) {
         reject(e);
