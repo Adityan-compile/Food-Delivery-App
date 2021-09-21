@@ -7,8 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 
+import AuthContext from '../../store/contexts/authContext';
 import {Button} from 'react-native-elements';
 import Logo from '../../assets/logo.png';
 import styles from './styles.js';
@@ -19,13 +20,39 @@ const SignupScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const {signup} = useContext(AuthContext);
+
   const {navigate} = useNavigation();
+
+  const handleSubmit = () => {
+    signup({
+      name: name,
+      email: email,
+      password: password,
+    })
+      .then(res => {
+        navigate('Tabs', {
+          screen: 'Home',
+        });
+      })
+      .catch(err => {
+        setError('Error Registering User Try Again Later');
+        console.error(err);
+      });
+  };
+
+  const renderError = () => {
+    if (error) {
+      return <Text style={[styles.error, styles.textCenter]}>{error}</Text>;
+    }
+  };
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <KeyboardAvoidingView>
           <Image source={Logo} style={styles.logo}></Image>
+          {renderError()}
           <TextInput
             placeholder="Name"
             value={name}
