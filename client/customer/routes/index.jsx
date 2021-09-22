@@ -21,11 +21,7 @@ const Routes = () => {
 
   const renderGroup = () => {
     if (user.authenticated === true) {
-      return (
-        <Stack.Group>
-          <Stack.Screen name="Tabs" component={Tabs}></Stack.Screen>
-        </Stack.Group>
-      );
+      return <Stack.Screen name="Tabs" component={Tabs}></Stack.Screen>;
     } else {
       return (
         <Stack.Group>

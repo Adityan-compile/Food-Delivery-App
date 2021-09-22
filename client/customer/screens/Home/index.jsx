@@ -1,11 +1,19 @@
+import React, {useEffect} from 'react';
 import {Text, View} from 'react-native';
 
-import React from 'react';
+import AndroidKeyboardAdjust from 'react-native-android-keyboard-adjust';
+import Header from '../../components/Header';
 
 const Home = () => {
+  useEffect(() => {
+    AndroidKeyboardAdjust.setAdjustNothing();
+    return () => {
+      AndroidKeyboardAdjust.setAdjustResize();
+    };
+  }, []);
   return (
     <View style={{flex: 1}}>
-      <Text>Home</Text>
+      <Header />
     </View>
   );
 };

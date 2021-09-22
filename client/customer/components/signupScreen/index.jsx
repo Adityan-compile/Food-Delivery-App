@@ -12,6 +12,7 @@ import React, {useContext, useState} from 'react';
 import AuthContext from '../../store/contexts/authContext';
 import {Button} from 'react-native-elements';
 import Logo from '../../assets/logo.png';
+import global from '../styles/global';
 import styles from './styles.js';
 import {useNavigation} from '@react-navigation/native';
 
@@ -43,7 +44,7 @@ const SignupScreen = () => {
 
   const renderError = () => {
     if (error) {
-      return <Text style={[styles.error, styles.textCenter]}>{error}</Text>;
+      return <Text style={[global.error, global.textCenter]}>{error}</Text>;
     }
   };
 
@@ -63,16 +64,16 @@ const SignupScreen = () => {
             keyboardType="email-address"
             value={email}
             onChangeText={setEmail}
-            style={styles.input}></TextInput>
+            style={global.input}></TextInput>
           <TextInput
             placeholder="Password"
             secureTextEntry
             value={password}
             onChangeText={setPassword}
-            style={styles.input}></TextInput>
-          <Button title="Join Us" buttonStyle={styles.button}></Button>
+            style={global.input}></TextInput>
+          <Button title="Join Us" buttonStyle={global.button}></Button>
           <TouchableOpacity>
-            <Text style={styles.link} onPress={() => navigate('Login')}>
+            <Text style={global.link} onPress={() => navigate('Login')}>
               Have an Account? Login
             </Text>
           </TouchableOpacity>

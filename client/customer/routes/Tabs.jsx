@@ -1,8 +1,8 @@
 import Account from '../screens/Account';
 import Cart from '../screens/Cart';
 import Favourites from '../screens/Favourites';
+import Header from '../components/Header';
 import Home from '../screens/Home';
-import {Icon} from 'react-native-elements';
 import React from 'react';
 import Search from '../screens/Search';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -20,18 +20,15 @@ const Tabs = () => {
         headerTitle: '',
         tabBarIcon: ({color, size}) => setTabIcons(size, color, route),
         headerShown: false,
-        // headerStyle: {
-        //   height: 100,
-        //   borderBottomEndRadius: 20,
-        //   borderBottomStartRadius: 20,
-        //   backgroundColor: '#ff3679',
-        // },
+        // header: Header,
       })}>
-      <Tab.Screen name="Home" component={Home}></Tab.Screen>
-      <Tab.Screen name="Search" component={Search}></Tab.Screen>
-      <Tab.Screen name="Cart" component={Cart}></Tab.Screen>
-      <Tab.Screen name="Favourites" component={Favourites}></Tab.Screen>
-      <Tab.Screen name="Account" component={Account}></Tab.Screen>
+      <Tab.Group>
+        <Tab.Screen name="Home" component={Home}></Tab.Screen>
+        <Tab.Screen name="Search" component={Search}></Tab.Screen>
+        <Tab.Screen name="Cart" component={Cart}></Tab.Screen>
+        <Tab.Screen name="Favourites" component={Favourites}></Tab.Screen>
+        <Tab.Screen name="Account" component={Account}></Tab.Screen>
+      </Tab.Group>
     </Tab.Navigator>
   );
 };
