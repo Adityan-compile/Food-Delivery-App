@@ -5,14 +5,11 @@ import React from 'react';
 import global from '../styles/global';
 import styles from './styles';
 
-const RestaurantCard = () => {
+const RestaurantCard = ({data}) => {
   return (
     <View style={styles.card}>
-      <Image
-        source={{uri: 'https://source.unsplash.com/featured/?food'}}
-        style={styles.image}
-      />
-      <Text style={styles.title}>The Big Bun Theory</Text>
+      <Image source={{uri: data.image}} style={styles.image} />
+      <Text style={styles.title}>{data.name}</Text>
       <Text style={styles.body}>
         {'\u20B9'}
         {'\u20B9'} . American, Continental, Chinese, Italian

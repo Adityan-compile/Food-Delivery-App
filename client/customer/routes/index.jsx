@@ -5,6 +5,8 @@ import AuthContext from '../store/contexts/authContext';
 import AuthProvider from '../store/providers/AuthProvider';
 import Login from '../screens/Login';
 import {NavigationContainer} from '@react-navigation/native';
+import RestaurantContext from '../store/contexts/restaurantContext';
+import RestaurantProvider from '../store/providers/RestaurantProvider';
 import Signup from '../screens/Signup';
 import Tabs from './Tabs';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -35,14 +37,16 @@ const Routes = () => {
   return (
     <View style={{flex: 1}}>
       <AuthContext.Provider value={AuthProvider}>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}>
-            {renderGroup()}
-          </Stack.Navigator>
-        </NavigationContainer>
+        <RestaurantContext.Provider value={RestaurantProvider}>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+              }}>
+              {renderGroup()}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </RestaurantContext.Provider>
       </AuthContext.Provider>
     </View>
   );
