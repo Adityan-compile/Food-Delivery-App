@@ -9,7 +9,6 @@ import {useNavigation} from '@react-navigation/native';
 const RestaurantCard = ({data}) => {
   const {navigate} = useNavigation();
   const handlePress = () => {
-    console.log('Handle Press');
     navigate('View Restaurant', {
       id: data._id,
     });

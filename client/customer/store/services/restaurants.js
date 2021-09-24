@@ -18,7 +18,7 @@ const restaurants = {
   getRestaurantById: id => {
     return new Promise((resolve, reject) => {
       axios
-        .get(`/restaurants?id=${id}`)
+        .get(`/restaurants/find?id=${id}`)
         .then(({status, data}) => {
           if (status === 200) {
             resolve(data.restaurant);

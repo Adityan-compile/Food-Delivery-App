@@ -52,9 +52,13 @@ const restaurantSchema = new mongoose.Schema({
       ref: 'review',
     },
   ],
+  cuisines: {
+    type: String,
+    required: true,
+  },
   image: {
     type: String,
-    default: ""
+    default: '',
   },
   role: {
     type: String,

@@ -17,7 +17,7 @@ const fileParser = require('../config/multer');
 
 router.route('/all').get(getRestaurants);
 
-router.route('/').get(getRestaurantById);
+router.route('/find').get(getRestaurantById);
 
 router.route('/login').post(login);
 
