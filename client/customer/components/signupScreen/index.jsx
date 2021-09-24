@@ -12,7 +12,7 @@ import React, {useContext, useState} from 'react';
 import AuthContext from '../../store/contexts/authContext';
 import {Button} from 'react-native-elements';
 import Logo from '../../assets/logo.png';
-import global from '../styles/global';
+import global from '../../styles/global';
 import styles from './styles.js';
 import {useNavigation} from '@react-navigation/native';
 

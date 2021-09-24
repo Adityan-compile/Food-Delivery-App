@@ -3,11 +3,11 @@
 const mongoose = require('mongoose');
 const review = require('../models/review.js');
 const restaurant = require('../models/restaurant.js');
+const item = require('../models/item.js');
 const bcrypt = require('bcrypt');
 const {
   generateAccessToken,
   generateRefreshToken,
-  dataURI,
 } = require('../utils/helpers.js');
 
 const uploadFile = require('../utils/upload');
@@ -29,13 +29,28 @@ exports.getRestaurantById = (req, res) => {
   if (!id) return res.status(400).json({ status: 400, message: 'Bad Request' });
 
   restaurant
-    .findOne({
-      _id: mongoose.types.ObjectId(id),
-    })
+    .findOne(
+      {
+        _id: mongoose.types.ObjectId(id),
+      },
+      '-password',
+    )
     .then((restaurant) => {
-      res.status(200).json({ status: 200, restaurant: restaurant });
+      item
+        .find({ restaurant: id })
+        .then((items) => {
+          restaurant.items = items;
+          res.status(200).json({ status: 200, restaurant: restaurant });
+        })
+        .catch((e) => {
+          console.error(e);
+          res
+            .status(500)
+            .json({ status: 500, message: 'Internal Server Error' });
+        });
     })
     .catch((err) => {
+      console.error(err);
       res.status(500).json({ status: 500, message: 'Internal Server Error' });
     });
 };

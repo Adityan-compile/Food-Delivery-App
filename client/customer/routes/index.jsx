@@ -1,4 +1,3 @@
-import {Alert, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 import AuthContext from '../store/contexts/authContext';
@@ -9,6 +8,7 @@ import RestaurantContext from '../store/contexts/restaurantContext';
 import RestaurantProvider from '../store/providers/RestaurantProvider';
 import Signup from '../screens/Signup';
 import Tabs from './Tabs';
+import {View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Routes = () => {
@@ -18,7 +18,7 @@ const Routes = () => {
   useEffect(() => {
     AuthProvider.getAuthState()
       .then(res => setUser(res))
-      .catch(e => Alert.alert('App Error !!'));
+      .catch(e => setUser({authenticated: false}));
   }, []);
 
   const renderGroup = () => {

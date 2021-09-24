@@ -10,7 +10,7 @@ export const setTabIcons = (size, color, route) => {
     return <Icon name="heart" type="ionicon" color={color} size={size}></Icon>;
   } else if (route.name === 'Cart') {
     return <Icon name="cart" type="ionicon" color={color} size={size}></Icon>;
-  } else if (route.name === 'Search') {
+  } else if (route.name === 'View Restaurant') {
     return (
       <Icon name="restaurant" type="ionicon" color={color} size={size}></Icon>
     );

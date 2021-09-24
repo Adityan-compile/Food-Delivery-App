@@ -1,7 +1,6 @@
-import {ScrollView, Text, TextInput, View} from 'react-native';
+import {Text, TextInput, View} from 'react-native';
 
 import React from 'react';
-import global from '../styles/global';
 import styles from './styles';
 import {useRoute} from '@react-navigation/native';
 

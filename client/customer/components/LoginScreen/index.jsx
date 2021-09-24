@@ -13,7 +13,7 @@ import AuthContext from '../../store/contexts/authContext';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 import {Button} from 'react-native-elements';
 import Logo from '../../assets/logo.png';
-import global from '../styles/global';
+import global from '../../styles/global';
 import styles from './styles.js';
 import {useNavigation} from '@react-navigation/native';
 

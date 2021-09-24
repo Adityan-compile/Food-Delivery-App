@@ -15,6 +15,20 @@ const restaurants = {
         .catch(e => reject(e));
     });
   },
+  getRestaurantById: id => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`/restaurants?id=${id}`)
+        .then(({status, data}) => {
+          if (status === 200) {
+            resolve(data.restaurant);
+          } else {
+            reject(status);
+          }
+        })
+        .catch(e => reject(e));
+    });
+  },
 };
 
 export default restaurants;

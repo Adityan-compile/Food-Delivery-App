@@ -3,7 +3,7 @@ import {ScrollView, Text, View} from 'react-native';
 
 import RestaurantCard from '../RestaurantCard';
 import RestaurantContext from '../../store/contexts/restaurantContext';
-import global from '../styles/global';
+import global from '../../styles/global';
 import styles from './styles';
 
 const Trending = () => {
