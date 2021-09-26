@@ -3,6 +3,7 @@ import Cart from '../screens/Cart';
 import Favourites from '../screens/Favourites';
 import Home from '../screens/Home';
 import React from 'react';
+import ViewItem from '../screens/ViewItem';
 import ViewRestaurant from '../screens/ViewRestaurant';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {setTabIcons} from './utils';
@@ -26,6 +27,7 @@ const Tabs = () => {
         <Tab.Screen
           name="View Restaurant"
           component={ViewRestaurant}></Tab.Screen>
+        <Tab.Screen name="View Item" component={ViewItem}></Tab.Screen>
         <Tab.Screen name="Cart" component={Cart}></Tab.Screen>
         <Tab.Screen name="Favourites" component={Favourites}></Tab.Screen>
         <Tab.Screen name="Account" component={Account}></Tab.Screen>

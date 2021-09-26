@@ -9,8 +9,8 @@ import {useNavigation} from '@react-navigation/native';
 const ItemCard = ({data}) => {
   const {navigate} = useNavigation();
   const handlePress = () => {
-    navigate('Home', {
-      id: data._id,
+    navigate('View Item', {
+      data: data,
     });
   };
   return (

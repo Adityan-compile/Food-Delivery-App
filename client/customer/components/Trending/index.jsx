@@ -13,7 +13,7 @@ const Trending = () => {
   useEffect(() => {
     getAllRestaurants()
       .then(res => setRestaurants(res))
-      .catch(err => setError(err));
+      .catch(err => setError('Error Loading Data'));
   }, []);
 
   return (

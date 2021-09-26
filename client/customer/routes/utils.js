@@ -14,5 +14,7 @@ export const setTabIcons = (size, color, route) => {
     return (
       <Icon name="restaurant" type="ionicon" color={color} size={size}></Icon>
     );
+  } else if (route.name === 'View Item') {
+    return <Icon name="pizza" type="ionicon" color={color} size={size}></Icon>;
   }
 };

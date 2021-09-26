@@ -29,18 +29,19 @@ const RestaurantScreen = ({data}) => {
         <Text style={styles.heading}>{data.name}</Text>
         <Text style={styles.cuisines}>{data.cuisines}</Text>
 
-        {/* <View
+        <View
           style={[
             global.container,
-            {flexDirection: 'row', flexWrap: 'wrap', margin: 10, height: 10},
+            {flexDirection: 'row', flexWrap: 'wrap', margin: 10},
           ]}>
           <Icon
-            name="hourglass-outline"
-            color="green"
+            name="star"
+            color="#ffbb00"
             type="ionicon"
-            style={[styles.hourGlass, styles.badge]}></Icon>
-          <Text>20 - 30 min</Text>
-        </View> */}
+            size={22}
+            style={styles.badge}></Icon>
+          <Text style={styles.rating}>9.0</Text>
+        </View>
 
         <Divider orientation="horizontal" style={{margin: 10}}></Divider>
 
@@ -94,7 +95,7 @@ const RestaurantScreen = ({data}) => {
               flexBasis: '100%',
             }}></View>
         </View>
-        <Text style={styles.infoTitle}>Items</Text>
+        <Text style={styles.infoTitle}>Menu</Text>
         {data.items.map(item => (
           <ItemCard key={item._id} data={item} />
         ))}

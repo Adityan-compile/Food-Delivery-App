@@ -5,6 +5,10 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   restaurant: {
     type: mongoose.Types.ObjectId,
     ref: 'restaurant',
