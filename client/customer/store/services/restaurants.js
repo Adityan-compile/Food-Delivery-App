@@ -21,6 +21,7 @@ const restaurants = {
         .get(`/restaurants/find?id=${id}`)
         .then(({status, data}) => {
           if (status === 200) {
+            data.restaurant.items = data.items;
             resolve(data.restaurant);
           } else {
             reject(status);

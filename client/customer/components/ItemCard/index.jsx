@@ -6,10 +6,10 @@ import global from '../../styles/global';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
-const RestaurantCard = ({data}) => {
+const ItemCard = ({data}) => {
   const {navigate} = useNavigation();
   const handlePress = () => {
-    navigate('View Restaurant', {
+    navigate('Home', {
       id: data._id,
     });
   };
@@ -18,17 +18,19 @@ const RestaurantCard = ({data}) => {
       <View style={styles.card}>
         <Image source={{uri: data.image}} style={styles.image} />
         <Text style={styles.title}>{data.name}</Text>
-        <Text style={styles.body}>
-          {'\u20B9'}
-          {'\u20B9'} . American, Continental, Chinese, Italian
-        </Text>
+        <Text style={styles.body}>American</Text>
         <View style={[global.container, {flexDirection: 'row'}]}>
-          <Text style={[styles.body, styles.rating]}>Rating : 9.0 </Text>
-          <Icon type="ionicon" name="star" size={18} color="gold" />
+          <Text style={[styles.body, styles.price]}>
+            {'\u20B9'}
+            {data.price}
+          </Text>
+          <Text>{'        '}</Text>
+          <Icon type="ionicon" name="hourglass" color="grey" size={18}></Icon>
+          <Text style={styles.body}> 20 - 30 Min</Text>
         </View>
       </View>
     </Pressable>
   );
 };
 
-export default RestaurantCard;
+export default ItemCard;

@@ -42,7 +42,13 @@ const styles = StyleSheet.create({
   },
   hourGlass: {
     alignSelf: 'flex-start',
+    width: 30,
     marginHorizontal: 10,
+  },
+  badge: {
+    backgroundColor: '#cccccc',
+    borderRadius: 5,
+    elevation: 6,
   },
 });
 

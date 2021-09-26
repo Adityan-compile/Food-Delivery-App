@@ -38,8 +38,9 @@ exports.getRestaurantById = (req, res) => {
       item
         .find({ restaurant: id })
         .then((items) => {
-          restaurant.items = items;
-          res.status(200).json({ status: 200, restaurant: restaurant });
+          res
+            .status(200)
+            .json({ status: 200, restaurant: restaurant, items: items });
         })
         .catch((e) => {
           res
