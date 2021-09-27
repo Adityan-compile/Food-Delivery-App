@@ -5,6 +5,7 @@
 | 1    | Start Working on Server     | [x]    |
 | 2    | Setup Multer and Cloudinary | [x]    |
 | 3    | Start Working on User App   | [x]    |
-| 5    | Connect API to Client       | [x]    |
-| 4    | Start Working on Admin App  | []     |
-| 6    | Integrate Payment Gateway   | []     |
+| 4    | Connect API to Client       | [x]    |
+| 5    | Add Redis Cache to Server   | []     |
+| 6    | Start Working on Admin App  | []     |
+| 7    | Integrate Payment Gateway   | []     |

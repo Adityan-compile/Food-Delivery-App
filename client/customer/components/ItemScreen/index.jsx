@@ -1,11 +1,14 @@
 import {Button, Icon} from 'react-native-elements';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
 
-import React from 'react';
+import NumericInput from 'react-native-numeric-input';
 import global from '../../styles/global';
 import styles from './styles';
 
 const ItemScreen = ({data}) => {
+  const [quantity, setQuantity] = useState(1);
+
   return (
     <View style={global.container}>
       <Image
@@ -26,6 +29,23 @@ const ItemScreen = ({data}) => {
           {data.price}
         </Text>
         <Text style={styles.info}>{data.description}</Text>
+        <NumericInput
+          value={quantity}
+          onChange={value => {
+            if (value === 0) {
+              setQuantity(1);
+            } else {
+              setQuantity(value);
+            }
+          }}
+          minValue={1}
+          maxValue={data.portionsAvailable}
+          containerStyle={styles.quantity}
+          rounded="true"></NumericInput>
+        <Text style={styles.price}>
+          {'\u20B9'}
+          {data.price * quantity}
+        </Text>
       </View>
       <TouchableOpacity>
         <Button

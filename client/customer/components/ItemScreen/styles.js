@@ -6,7 +6,7 @@ const width = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   cover: {
     width: width,
-    height: height / 2.5,
+    height: height / 3,
   },
   heading: {
     fontWeight: '900',
@@ -44,6 +44,10 @@ const styles = StyleSheet.create({
   button: {
     margin: 20,
     borderRadius: 20,
+  },
+  quantity: {
+    marginHorizontal: 10,
+    marginBottom: 10,
   },
 });
 
