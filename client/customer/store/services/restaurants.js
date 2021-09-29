@@ -30,6 +30,20 @@ const restaurants = {
         .catch(e => reject(e));
     });
   },
+  search: query => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`/restaurants/search?q=${query}`)
+        .then(({status, data}) => {
+          if (status === 200) {
+            resolve(data.results);
+          } else {
+            reject(status);
+          }
+        })
+        .catch(e => reject(e));
+    });
+  },
 };
 
 export default restaurants;

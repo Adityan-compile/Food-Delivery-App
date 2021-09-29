@@ -1,21 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 
+import React from 'react';
 import RestaurantCard from '../RestaurantCard';
-import RestaurantContext from '../../store/contexts/restaurantContext';
 import global from '../../styles/global';
 import styles from './styles';
 
-const Trending = () => {
-  const {getAllRestaurants} = useContext(RestaurantContext);
-  const [restaurants, setRestaurants] = useState([]);
-  const [error, setError] = useState('');
-  useEffect(() => {
-    getAllRestaurants()
-      .then(res => setRestaurants(res))
-      .catch(err => setError('Error Loading Data'));
-  }, []);
-
+const Trending = ({restaurants, error}) => {
   return (
     <View style={{flex: 1}}>
       {error ? (

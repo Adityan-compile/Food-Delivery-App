@@ -11,95 +11,6 @@ const {
 
 const uploadFile = require('../utils/upload');
 
-exports.getRestaurants = (req, res) => {
-  restaurant
-    .find({}, '-password')
-    .then((restaurants) => {
-      res.status(200).json({ status: 200, restaurants: restaurants });
-    })
-    .catch((err) => {
-      res.status(500).json({ status: 500, message: 'Internal Server Error' });
-    });
-};
-
-exports.getRestaurantById = (req, res) => {
-  const id = req.query.id;
-
-  if (!id) return res.status(400).json({ status: 400, message: 'Bad Request' });
-
-  restaurant
-    .findOne(
-      {
-        _id: id,
-      },
-      '-password',
-    )
-    .then((restaurant) => {
-      item
-        .find({ restaurant: id })
-        .then((items) => {
-          res
-            .status(200)
-            .json({ status: 200, restaurant: restaurant, items: items });
-        })
-        .catch((e) => {
-          res
-            .status(500)
-            .json({ status: 500, message: 'Internal Server Error' });
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ status: 500, message: 'Internal Server Error' });
-    });
-};
-
-exports.addReview = async (req, res) => {
-  let body = req.body;
-  let user = req.user;
-  let reviews = [];
-  try {
-    reviews = await review.find({ restaurant: body.restaurant });
-  } catch (e) {
-    res.status(500).json({ status: 500, message: 'Internal Server Error' });
-  }
-
-  let found = false;
-
-  reviews.forEach((item) => {
-    if (item.user === user._id) {
-      found = true;
-    }
-  });
-
-  if (found) {
-    return res
-      .status(409)
-      .json({ status: 409, message: 'Review Already Found' });
-  }
-
-  let newReview = new review({
-    restaurant: body.restaurant,
-    user: user._id,
-    review: body.review,
-  });
-
-  newReview.save((err, doc) => {
-    if (err) {
-      console.error(err);
-      return res
-        .status(500)
-        .json({ status: 500, message: 'Internal Server Error' });
-    } else {
-      res.status(200).json({
-        status: 200,
-        message: 'Review Added successfully',
-        review: doc,
-      });
-    }
-  });
-};
-
 exports.login = (req, res) => {
   const body = req.body;
   if (!body || Object.keys(body).length === 0) {
@@ -282,4 +193,133 @@ exports.deleteAccount = async (req, res) => {
   } catch (e) {
     return res.status(409).json({ status: 409, message: 'Delete Error' });
   }
+};
+
+exports.getRestaurants = (req, res) => {
+  restaurant
+    .find({}, '-password')
+    .then((restaurants) => {
+      res.status(200).json({ status: 200, restaurants: restaurants });
+    })
+    .catch((err) => {
+      res.status(500).json({ status: 500, message: 'Internal Server Error' });
+    });
+};
+
+exports.getRestaurantById = (req, res) => {
+  const id = req.query.id;
+
+  if (!id) return res.status(400).json({ status: 400, message: 'Bad Request' });
+
+  restaurant
+    .findOne(
+      {
+        _id: id,
+      },
+      '-password',
+    )
+    .then((restaurant) => {
+      item
+        .find({ restaurant: id })
+        .then((items) => {
+          res
+            .status(200)
+            .json({ status: 200, restaurant: restaurant, items: items });
+        })
+        .catch((e) => {
+          res
+            .status(500)
+            .json({ status: 500, message: 'Internal Server Error' });
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ status: 500, message: 'Internal Server Error' });
+    });
+};
+
+exports.addReview = async (req, res) => {
+  let body = req.body;
+  let user = req.user;
+  let reviews = [];
+  try {
+    reviews = await review.find({ restaurant: body.restaurant });
+  } catch (e) {
+    res.status(500).json({ status: 500, message: 'Internal Server Error' });
+  }
+
+  let found = false;
+
+  reviews.forEach((item) => {
+    if (item.user === user._id) {
+      found = true;
+    }
+  });
+
+  if (found) {
+    return res
+      .status(409)
+      .json({ status: 409, message: 'Review Already Found' });
+  }
+
+  let newReview = new review({
+    restaurant: body.restaurant,
+    user: user._id,
+    review: body.review,
+  });
+
+  newReview.save((err, doc) => {
+    if (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ status: 500, message: 'Internal Server Error' });
+    } else {
+      res.status(200).json({
+        status: 200,
+        message: 'Review Added successfully',
+        review: doc,
+      });
+    }
+  });
+};
+
+exports.searchRestaurant = (req, res) => {
+  const { q: query } = req.query;
+
+  if (!query)
+    return res.status(400).json({
+      status: 400,
+      message: 'Bad Request',
+    });
+
+  restaurant
+    .find({
+      $or: [
+        {
+          name: {
+            $regex: new RegExp(query),
+            $options: 'i',
+          },
+        },
+        {
+          address: {
+            $regex: new RegExp(query),
+            $options: 'i',
+          },
+        },
+      ],
+    })
+    .then((results) => {
+      res.status(200).json({
+        status: 200,
+        results: results,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        status: 500,
+        message: 'Error Getting Search Results',
+      });
+    });
 };

@@ -7,6 +7,7 @@ const {
   login,
   signup,
   addReview,
+  searchRestaurant,
 } = require('../controllers/restaurantController');
 
 const authenticate = require('../middleware/authenticator');
@@ -15,9 +16,13 @@ const manageRole = require('../middleware/role');
 
 const fileParser = require('../config/multer');
 
-router.route('/all').get(getRestaurants);
+const cache = require('../config/cache');
 
-router.route('/find').get(getRestaurantById);
+router.route('/all').get(cache.route(), getRestaurants);
+
+router.route('/find').get(cache.route(), getRestaurantById);
+
+router.route('/search').get(cache.route(), searchRestaurant);
 
 router.route('/login').post(login);
 

@@ -1,11 +1,14 @@
+import React, {useState} from 'react';
 import {Text, TextInput, View} from 'react-native';
 
-import React from 'react';
 import styles from './styles';
 import {useRoute} from '@react-navigation/native';
 
-const Header = () => {
+const Header = ({handleSubmit}) => {
   const route = useRoute();
+
+  const [query, setQuery] = useState('');
+
   if (route.name === 'Home') {
     return (
       <View style={styles.header}>
@@ -13,7 +16,9 @@ const Header = () => {
         <TextInput
           placeholderTextColor="#878787"
           placeholder="Find Restaurants Near You"
-          style={styles.input}></TextInput>
+          style={styles.input}
+          onChangeText={value => setQuery(value)}
+          onSubmitEditing={() => handleSubmit(query)}></TextInput>
       </View>
     );
   }
