@@ -23,7 +23,14 @@
    - [x] View Restaurant
    - [x] Add reviews
 
-4. ### Orders
+4. ### Cart
+
+   - [] Add to Cart
+   - [] Remove from Cart
+   - [] Change Quantity
+   - [] Total Cart
+
+5. ### Orders
 
    - [] Place orders
      - [] Payment Integration
@@ -35,12 +42,6 @@
        - **Declined**
    - [] View Order history
    - [] Cancel Order
-
-5. ### Cart
-   - [] Add to Cart
-   - [] Remove from Cart
-   - [] Change Quantity
-   - [] Total Cart
 
 ---
 
