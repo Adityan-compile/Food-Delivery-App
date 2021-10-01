@@ -25,7 +25,7 @@
 
 4. ### Cart
 
-   - [] Add to Cart
+   - [x] Add to Cart
    - [] Remove from Cart
    - [] Change Quantity
    - [] Total Cart
@@ -88,3 +88,4 @@
 ## General
 
 - [x] User Role Management
+- [] Determine Distance and Delivery Price According to Location (Open Route Service)
