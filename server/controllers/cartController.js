@@ -38,6 +38,7 @@ exports.addToCart = async (req, res) => {
         res.status(200).json({
           status: 200,
           message: 'Item Added to Cart',
+          cart: result,
         });
       })
       .catch((err) => {
@@ -51,30 +52,34 @@ exports.addToCart = async (req, res) => {
     cart
       .findOne({ user: ObjectId(user._id) })
       .then((result) => {
-        result.items = result.items.map((obj) => {
-          return {
-            item: obj.item.toString(),
-            quantity: obj.quantity,
-          };
+        let items = result.items.map((obj) => {
+          return obj.item.toString();
         });
-        console.log(result.items);
-        if (_.includes(result.items, body.item.toString())) {
+        if (_.includes(items, body.item)) {
           cart
-            .updateOne(
+            .findOneAndUpdate(
               {
-                _id: ObjectId(user._id),
-                'items.item': body.item,
+                user: user._id,
+                items: {
+                  $elemMatch: {
+                    item: ObjectId(body.item),
+                  },
+                },
               },
               {
                 $inc: {
-                  'items.$.item.quantity': body.quantity,
+                  'items.$.quantity': body.quantity,
                 },
+              },
+              {
+                new: true,
               },
             )
             .then((result) => {
               res.status(200).json({
                 status: 200,
                 message: 'Item Added to Cart',
+                cart: result,
               });
             })
             .catch((err) => {
