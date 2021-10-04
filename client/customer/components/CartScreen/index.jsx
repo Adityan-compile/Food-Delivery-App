@@ -1,5 +1,6 @@
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 
+import CartItems from '../CartItems';
 import PriceCard from '../PriceCard';
 import React from 'react';
 import global from '../../styles/global';
@@ -7,7 +8,10 @@ import global from '../../styles/global';
 const CartScreen = () => {
   return (
     <View style={global.container}>
-      <PriceCard />
+      <ScrollView>
+        <CartItems />
+        <PriceCard />
+      </ScrollView>
     </View>
   );
 };
