@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontStyle: 'italic',
     margin: 20,
-    marginLeft: 5,
+    marginLeft: 10,
   },
   input: {
     backgroundColor: 'white',
