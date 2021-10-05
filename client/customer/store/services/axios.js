@@ -20,9 +20,22 @@ console.log(accessToken, refreshToken);
 
 instance.defaults.baseURL = constants.API_URL;
 
-instance.defaults.common.headers['Authorization'] = refreshToken
-  ? `Bearer ${refreshToken}`
-  : '';
+// instance.defaults.headers['Authorization'] = refreshToken
+//   ? `Bearer ${refreshToken}`
+//   : '';
+
+instance.interceptors.request.use(
+  config => {
+    config.headers['Authorization'] = refreshToken
+      ? `Bearer ${refreshToken}`
+      : '';
+
+    return config;
+  },
+  err => {
+    return Promise.reject(err);
+  },
+);
 
 instance.interceptors.response.use(
   response => {
@@ -42,10 +55,18 @@ instance.interceptors.response.use(
                 accessToken: data.accessToken,
                 refreshToken: data.refreshToken,
               });
+              accessToken = data.accessToken;
+              refreshToken = data.refreshToken;
+              err.config._isRetryRequest = true;
+              err.config.headers.Authorization = `Bearer ${refreshToken}`;
+              axios(err.config);
             } else {
+              storage.remove('USER');
             }
           })
-          .catch(err => {});
+          .catch(err => {
+            storage.remove('USER');
+          });
       } else {
         const originalRequest = err.config;
         return instance(originalRequest);
