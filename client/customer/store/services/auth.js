@@ -1,6 +1,8 @@
-// import Config from 'react-native-config';
 import axios from 'axios';
+import constants from '../../constants';
 import storage from '../../storage';
+
+axios.defaults.baseURL = constants.API_URL;
 
 const post = axios.post;
 

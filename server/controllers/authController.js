@@ -123,6 +123,7 @@ exports.regenerateToken = (req, res) => {
       res.status(200).json({
         status: 200,
         message: 'Success',
+        user: user,
         accessToken: accessToken,
         refreshToken: data.refreshToken,
       });
