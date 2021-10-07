@@ -1,6 +1,6 @@
 import axios from 'axios';
 import constants from '../../constants';
-import {resolveConfig} from 'prettier';
+import emitter from './emitter';
 import storage from '../../storage';
 
 const instance = axios.create({});
@@ -62,10 +62,12 @@ instance.interceptors.response.use(
               axios(err.config);
             } else {
               storage.remove('USER');
+              emitter.emit('logout');
             }
           })
           .catch(err => {
             storage.remove('USER');
+            emitter.emit('logout');
           });
       } else {
         const originalRequest = err.config;

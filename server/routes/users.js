@@ -12,8 +12,6 @@ const {
   editAccount,
 } = require('../controllers/userController.js');
 
-const { addToCart } = require('../controllers/cartController');
-
 const authenticate = require('../middleware/authenticator');
 const manageRole = require('../middleware/role');
 
@@ -31,7 +29,5 @@ router
 router
   .route('/account/edit')
   .patch([authenticate, manageRole('u')], editAccount);
-
-router.route('/cart/add').post([authenticate, manageRole('u')], addToCart);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import constants from '../../constants';
+import emitter from './emitter';
 import storage from '../../storage';
 
 axios.defaults.baseURL = constants.API_URL;

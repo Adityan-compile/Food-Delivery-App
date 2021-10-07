@@ -1,13 +1,29 @@
+import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 
+import CartContext from '../../store/contexts/cartContext';
 import NumericInput from 'react-native-numeric-input';
 import global from '../../styles/global';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 const ItemScreen = ({data}) => {
   const [quantity, setQuantity] = useState(1);
+
+  const {addToCart} = useContext(CartContext);
+
+  const {navigate} = useNavigation();
+
+  const handleSubmit = () => {
+    addToCart(data._id, quantity)
+      .then(res => {
+        navigate('Cart', {
+          cart: res,
+        });
+      })
+      .catch(err => Alert.alert('Error', 'Cannot Add Item to Cart !!'));
+  };
 
   return (
     <View style={global.container}>
@@ -57,6 +73,7 @@ const ItemScreen = ({data}) => {
               color="white"
               style={{marginRight: 5}}></Icon>
           }
+          onPress={() => handleSubmit()}
           buttonStyle={styles.button}></Button>
       </TouchableOpacity>
     </View>
