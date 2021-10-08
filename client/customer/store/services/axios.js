@@ -23,10 +23,6 @@ storage
 
 instance.defaults.baseURL = constants.API_URL;
 
-// instance.defaults.headers['Authorization'] = refreshToken
-//   ? `Bearer ${refreshToken}`
-//   : '';
-
 instance.interceptors.request.use(
   config => {
     config.headers['Authorization'] = accessToken

@@ -9,8 +9,6 @@ module.exports = async (req, res, next) => {
 
   const token = header && header.split(' ')[1];
 
-  console.log(token);
-
   if (!token) {
     return res.status(403).json({
       status: 403,
