@@ -1,4 +1,5 @@
 const redisCache = require('express-redis-cache');
+const chalk = require('chalk');
 
 const { REDIS_PORT, REDIS_HOST, CACHE_EXPIRY } = process.env;
 
@@ -14,11 +15,19 @@ const cache = redisCache({
 });
 
 cache.on('connected', () => {
-  console.info('Redis Cache Connected');
+  console.info(
+    chalk.white.bgBlue(`[${new Date().toJSON()}]`),
+    chalk.green('Cache Connected'),
+  );
 });
 
 cache.on('disconnected', () => {
-  console.info('Redis Cache Disconnected');
+  console.info(
+    chalk.white.bgRed(
+      `Error [${new Date().toJSON()}]`,
+      'Redis Cache Disconnected',
+    ),
+  );
 });
 
 module.exports = cache;

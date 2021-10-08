@@ -1,28 +1,31 @@
-'use strict'
+'use strict';
 
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
-const { ACCESS_TOKEN_KEY } = process.env
+const { ACCESS_TOKEN_KEY } = process.env;
 
 module.exports = async (req, res, next) => {
-  const header = req.headers.authorization
+  const header = req.headers.authorization;
 
-  const token = header && header.split(' ')[1]
+  const token = header && header.split(' ')[1];
+
+  console.log(token);
 
   if (!token) {
     return res.status(403).json({
       status: 403,
-      message: 'Token Required'
-    })
+      message: 'Token Required',
+    });
   }
   try {
-    const decoded = await jwt.verify(token, ACCESS_TOKEN_KEY)
-    req.user = decoded
+    const decoded = await jwt.verify(token, ACCESS_TOKEN_KEY);
+    req.user = decoded;
   } catch (err) {
+    console.error(err);
     return res.status(401).json({
       status: 401,
-      message: 'Invalid Token'
-    })
+      message: 'Invalid Token',
+    });
   }
-  return next()
-}
+  return next();
+};

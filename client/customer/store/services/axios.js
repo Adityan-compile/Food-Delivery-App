@@ -11,12 +11,15 @@ let refreshToken = '';
 storage
   .get('USER')
   .then(user => {
-    accessToken = user.accessToken;
-    refreshToken = user.refreshToken;
+    if (user === null || user === undefined) {
+      accessToken = '';
+      refreshToken = '';
+    } else {
+      accessToken = user.accessToken;
+      refreshToken = user.refreshToken;
+    }
   })
   .catch(e => console.error(e));
-
-console.log(accessToken, refreshToken);
 
 instance.defaults.baseURL = constants.API_URL;
 
@@ -26,8 +29,8 @@ instance.defaults.baseURL = constants.API_URL;
 
 instance.interceptors.request.use(
   config => {
-    config.headers['Authorization'] = refreshToken
-      ? `Bearer ${refreshToken}`
+    config.headers['Authorization'] = accessToken
+      ? `Bearer ${accessToken}`
       : '';
 
     return config;
@@ -43,7 +46,7 @@ instance.interceptors.response.use(
   },
   err => {
     return new Promise((resolve, reject) => {
-      if (err.response.status === 401) {
+      if (err.response.status === 401 || err.config_isRetryRequest === false) {
         instance
           .post('/tokens/regenerate', {
             refreshToken: refreshToken ? refreshToken : '',
@@ -58,8 +61,8 @@ instance.interceptors.response.use(
               accessToken = data.accessToken;
               refreshToken = data.refreshToken;
               err.config._isRetryRequest = true;
-              err.config.headers.Authorization = `Bearer ${refreshToken}`;
-              axios(err.config);
+              err.config.headers.Authorization = `Bearer ${accessToken}`;
+              instance(err.config);
             } else {
               storage.remove('USER');
               emitter.emit('logout');

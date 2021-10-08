@@ -6,6 +6,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const chalk = require('chalk');
 
 // Configure Dotenv
 const env = require('dotenv').config({
@@ -13,10 +14,17 @@ const env = require('dotenv').config({
 });
 
 if (env.error) {
-  console.error('Error Loading Environment Variables', '\n', env.error);
+  console.error(
+    `[${new Date().toJSON()}] Error Loading Environment Variables`,
+    '\n',
+    env.error,
+  );
   process.exit(1);
 } else {
-  console.info('Environment Variables Loaded Successfully');
+  console.info(
+    chalk.bgBlue(`[${new Date().toJSON()}]`),
+    chalk.green(`Environment Variables Loaded Successfully`),
+  );
 }
 
 const app = express();
@@ -32,11 +40,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = require('./config/database.js');
 
 db.on('open', () => {
-  console.log('Database connected Successfully');
+  console.log(
+    chalk.white.bgCyan(`[${new Date().toJSON()}]`),
+    chalk.green(`Database connected`),
+  );
 });
 
 db.on('error', (err) => {
-  console.error('Error connecting to Database');
+  console.error(
+    chalk.white.bgRed(`[${new Date().toJSON()}]`),
+    chalk.red(`Error connecting to Database`),
+  );
   console.error(err);
   process.exit(1);
 });
@@ -45,6 +59,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const restaurantsRouter = require('./routes/restaurants');
 const cartRouter = require('./routes/cart');
+const { now } = require('lodash');
 
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);

@@ -30,6 +30,13 @@ const Routes = () => {
     });
   });
 
+  emitter.on('login', user => {
+    setUser({
+      ...user,
+      authenticated: true,
+    });
+  });
+
   const renderGroup = () => {
     if (user.authenticated === true) {
       return <Stack.Screen name="Tabs" component={Tabs}></Stack.Screen>;

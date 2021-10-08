@@ -19,7 +19,10 @@ const auth = {
                 refreshToken: data.refreshToken,
                 accessToken: data.accessToken,
               })
-              .then(() => resolve(data))
+              .then(() => {
+                emitter.emit('login', data.user);
+                resolve(data);
+              })
               .catch(e => reject(e));
           } else {
             return reject(data);
