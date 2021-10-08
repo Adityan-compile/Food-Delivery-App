@@ -10,6 +10,20 @@ const cart = {
         })
         .then(({data, status}) => {
           if (status === 200) {
+            resolve(true);
+          } else {
+            reject(status);
+          }
+        })
+        .catch(err => reject(err));
+    });
+  },
+  getCart: () => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get('/cart')
+        .then(({data, status}) => {
+          if (status === 200) {
             resolve(data.cart);
           } else {
             reject(status);

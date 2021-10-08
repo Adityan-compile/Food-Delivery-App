@@ -6,6 +6,34 @@ const ObjectId = mongoose.Types.ObjectId;
 
 const _ = require('lodash');
 
+exports.getCart = (req, res) => {
+  const user = req.user;
+
+  cart
+    .findOne({ _id: ObjectId(user._id) })
+    .populate({
+      path: 'items',
+      populate: {
+        path: 'item',
+      },
+    })
+    .exec()
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({
+        status: 200,
+        cart: result,
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({
+        status: 500,
+        message: 'Internal Server Error',
+      });
+    });
+};
+
 exports.addToCart = async (req, res) => {
   const user = req.user;
 
@@ -79,7 +107,6 @@ exports.addToCart = async (req, res) => {
               res.status(200).json({
                 status: 200,
                 message: 'Item Added to Cart',
-                cart: result,
               });
             })
             .catch((err) => {

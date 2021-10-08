@@ -18,9 +18,7 @@ const ItemScreen = ({data}) => {
   const handleSubmit = () => {
     addToCart(data._id, quantity)
       .then(res => {
-        navigate('Cart', {
-          cart: res,
-        });
+        navigate('Cart');
       })
       .catch(err => Alert.alert('Error', 'Cannot Add Item to Cart !!'));
   };

@@ -41,38 +41,38 @@ instance.interceptors.response.use(
     return response;
   },
   err => {
-    return new Promise((resolve, reject) => {
-      if (err.response.status === 401 || err.config_isRetryRequest === false) {
-        instance
-          .post('/tokens/regenerate', {
-            refreshToken: refreshToken ? refreshToken : '',
-          })
-          .then(({status, data}) => {
-            if (status === 200) {
-              storage.set('USER', {
-                user: data.user,
-                accessToken: data.accessToken,
-                refreshToken: data.refreshToken,
-              });
-              accessToken = data.accessToken;
-              refreshToken = data.refreshToken;
-              err.config._isRetryRequest = true;
-              err.config.headers.Authorization = `Bearer ${accessToken}`;
-              instance(err.config);
-            } else {
-              storage.remove('USER');
-              emitter.emit('logout');
-            }
-          })
-          .catch(err => {
+    if (err.response.status === 401 || err.config_isRetryRequest === false) {
+      instance
+        .post('/tokens/regenerate', {
+          refreshToken: refreshToken ? refreshToken : '',
+        })
+        .then(({status, data}) => {
+          if (status === 200) {
+            storage.set('USER', {
+              user: data.user,
+              accessToken: data.accessToken,
+              refreshToken: data.refreshToken,
+            });
+            accessToken = data.accessToken;
+            refreshToken = data.refreshToken;
+            err.config._isRetryRequest = true;
+            err.config.headers.Authorization = `Bearer ${accessToken}`;
+            instance(err.config);
+          } else {
             storage.remove('USER');
             emitter.emit('logout');
-          });
-      } else {
-        const originalRequest = err.config;
-        return instance(originalRequest);
-      }
-    });
+          }
+        })
+        .catch(err => {
+          storage.remove('USER');
+          emitter.emit('logout');
+        });
+    } else if (err.response.status === 500) {
+      return err;
+    } else {
+      const originalRequest = err.config;
+      return instance(originalRequest);
+    }
   },
 );
 
