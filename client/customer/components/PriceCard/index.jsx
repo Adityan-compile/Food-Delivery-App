@@ -12,7 +12,7 @@ const PriceCard = ({data}) => {
         containerStyle={styles.priceCard}
         color="black"
         title="Total"
-        price={'\u20B9 100'}
+        price={'\u20B9' + data.total || 0}
         info={['Delivery: \u20B920', 'Tax & Fees: \u20B910']}
         button={
           <Button

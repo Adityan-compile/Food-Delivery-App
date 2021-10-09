@@ -5,18 +5,21 @@ import React from 'react';
 import global from '../../styles/global';
 import styles from './styles';
 
-const CartItemCard = ({item}) => {
+const CartItemCard = ({data}) => {
   return (
     <View style={global.container}>
       <View style={styles.card}>
         <Image
-          source={{uri: 'https://source.unsplash.com/random'}}
+          source={{uri: data.item.image}}
           style={styles.image}
           resizeMode="cover"
           resizeMethod="resize"></Image>
         <View style={[global.container, styles.info]}>
-          <Text style={styles.text}>{item.title}</Text>
-          <Text style={styles.price}>{'\u20B9'}200</Text>
+          <Text style={styles.text}>{data.item.name}</Text>
+          <Text style={styles.price}>
+            {'\u20B9'}
+            {data.item.price * data.quantity}
+          </Text>
         </View>
         <TouchableOpacity>
           <Icon
