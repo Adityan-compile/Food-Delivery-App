@@ -27,7 +27,7 @@ const CartScreen = () => {
   return (
     <View style={global.container}>
       <ScrollView>
-        <CartItems items={cart.items} />
+        <CartItems />
         <PriceCard />
       </ScrollView>
     </View>

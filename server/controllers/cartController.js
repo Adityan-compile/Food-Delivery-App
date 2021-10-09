@@ -10,16 +10,10 @@ exports.getCart = (req, res) => {
   const user = req.user;
 
   cart
-    .findOne({ _id: ObjectId(user._id) })
-    .populate({
-      path: 'items',
-      populate: {
-        path: 'item',
-      },
-    })
+    .findOne({ user: ObjectId(user._id) })
+    .populate('items.item')
     .exec()
     .then((result) => {
-      console.log(result);
       res.status(200).json({
         status: 200,
         cart: result,
