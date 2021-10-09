@@ -1,13 +1,8 @@
-import {Text, View} from 'react-native';
-
+import AccountScreen from '../../components/AccountScreen';
 import React from 'react';
 
 const Account = () => {
-  return (
-    <View>
-      <Text>Account</Text>
-    </View>
-  );
+  return <AccountScreen />;
 };
 
 export default Account;

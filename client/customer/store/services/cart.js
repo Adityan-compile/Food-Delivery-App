@@ -8,7 +8,7 @@ const cart = {
           item: item,
           quantity: quantity,
         })
-        .then(({data, status}) => {
+        .then(({status}) => {
           if (status === 200) {
             resolve(true);
           } else {
