@@ -26,9 +26,9 @@
 4. ### Cart
 
    - [x] Add to Cart
+   - [x] Change Quantity
+   - [x] Total Cart
    - [] Remove from Cart
-   - [] Change Quantity
-   - [] Total Cart
 
 5. ### Orders
 

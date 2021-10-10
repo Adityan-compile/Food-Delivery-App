@@ -1,4 +1,4 @@
-import {Alert, ScrollView, View} from 'react-native';
+import {Alert, RefreshControl, ScrollView, View} from 'react-native';
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
@@ -14,8 +14,10 @@ const CartScreen = () => {
     items: [],
   });
   const [total, setTotal] = useState();
+  const [refreshing, setRefreshing] = useState(false);
 
   const fetchData = useCallback(() => {
+    setRefreshing(true);
     getCart()
       .then(res => {
         setCart(res);
@@ -24,9 +26,10 @@ const CartScreen = () => {
           tot += elem.item.price * elem.quantity;
         });
         setTotal(tot);
+        setRefreshing(false);
       })
       .catch(e => {
-        console.error(e);
+        setRefreshing(false);
         Alert.alert(
           'Error',
           'Error Loading Your Cart Please Try Again Later !!',
@@ -43,7 +46,12 @@ const CartScreen = () => {
 
   return (
     <View style={global.container}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={fetchData}></RefreshControl>
+        }>
         <CartItems items={cart.items} />
         <PriceCard
           data={{

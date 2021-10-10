@@ -61,6 +61,7 @@ instance.interceptors.response.use(
           } else {
             storage.remove('USER');
             emitter.emit('logout');
+            return err;
           }
         })
         .catch(err => {

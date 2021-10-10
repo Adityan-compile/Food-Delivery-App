@@ -80,6 +80,7 @@ exports.signup = async (req, res) => {
     name: body.name,
     email: body.email,
     password: body.password,
+    address: body.address,
     orders: [],
   });
   newUser.save(async (err, savedUser) => {

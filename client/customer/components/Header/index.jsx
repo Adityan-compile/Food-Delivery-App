@@ -28,6 +28,8 @@ const Header = ({handleSubmit}) => {
         <Text style={styles.headingText}>Cart</Text>
       </View>
     );
+  } else {
+    return null;
   }
 };
 

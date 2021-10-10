@@ -1,4 +1,4 @@
-import {ScrollView, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
 import React from 'react';
 import RestaurantCard from '../RestaurantCard';
@@ -13,12 +13,12 @@ const Trending = ({restaurants, error}) => {
           {error}
         </Text>
       ) : (
-        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <View style={global.container}>
           <Text style={styles.heading}>Trending</Text>
           {restaurants.map(item => (
             <RestaurantCard key={item._id} data={item} />
           ))}
-        </ScrollView>
+        </View>
       )}
     </View>
   );
