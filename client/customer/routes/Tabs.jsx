@@ -29,7 +29,7 @@ const Tabs = () => {
           component={ViewRestaurant}></Tab.Screen>
         <Tab.Screen name="View Item" component={ViewItem}></Tab.Screen>
         <Tab.Screen name="Cart" component={Cart}></Tab.Screen>
-        <Tab.Screen name="Favourites" component={Favourites}></Tab.Screen>
+        {/* <Tab.Screen name="Favourites" component={Favourites}></Tab.Screen> */}
         <Tab.Screen name="Account" component={Account}></Tab.Screen>
       </Tab.Group>
     </Tab.Navigator>

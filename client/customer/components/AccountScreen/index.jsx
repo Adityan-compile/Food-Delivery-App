@@ -1,8 +1,8 @@
-import {Alert, Text, View} from 'react-native';
+import {Alert, Text, TouchableOpacity, View} from 'react-native';
+import {Avatar, Button, ListItem} from 'react-native-elements';
 import React, {useContext, useEffect, useState} from 'react';
 
 import AuthContext from '../../store/contexts/authContext';
-import {Avatar} from 'react-native-elements';
 import global from '../../styles/global';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -11,9 +11,8 @@ const AccountScreen = () => {
   const [user, setUser] = useState({name: ''});
   const {getAuthState} = useContext(AuthContext);
   const {navigate} = useNavigation();
+
   var colors = [
-    'orange',
-    'tomato',
     '#02b085',
     '#0072c6',
     '#ad2a1a',
@@ -36,6 +35,7 @@ const AccountScreen = () => {
         setTimeout(navigate('Home'), 1000);
       });
   }, []);
+
   return (
     <View style={global.container}>
       <View style={styles.infoContainer}>
@@ -61,6 +61,48 @@ const AccountScreen = () => {
             <Text style={styles.infoText}>{user.name}</Text>
             <Text style={styles.infoText}>{user.email}</Text>
           </View>
+        </View>
+      </View>
+      <View style={[global.container, styles.body]}>
+        <Button
+          title="Edit Account"
+          raised
+          containerStyle={styles.buttonContainer}
+          buttonStyle={styles.edit}></Button>
+        <Button
+          title="Delete Account"
+          raised
+          containerStyle={styles.buttonContainer}
+          buttonStyle={styles.delete}></Button>
+        <View style={[global.container, styles.listContainer]}>
+          <TouchableOpacity>
+            <ListItem bottomDivider>
+              <ListItem.Content>
+                <ListItem.Title>Addresses</ListItem.Title>
+              </ListItem.Content>
+            </ListItem>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <ListItem bottomDivider>
+              <ListItem.Content>
+                <ListItem.Title>Previous orders</ListItem.Title>
+              </ListItem.Content>
+            </ListItem>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <ListItem bottomDivider>
+              <ListItem.Content>
+                <ListItem.Title>Paytments</ListItem.Title>
+              </ListItem.Content>
+            </ListItem>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <ListItem bottomDivider>
+              <ListItem.Content>
+                <ListItem.Title>Favourites</ListItem.Title>
+              </ListItem.Content>
+            </ListItem>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
