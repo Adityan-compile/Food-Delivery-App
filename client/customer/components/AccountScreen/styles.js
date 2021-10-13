@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: 10,
     marginTop: 35,
-    elevation: 10,
+    elevation: 6,
   },
   infoText: {
     textAlign: 'center',

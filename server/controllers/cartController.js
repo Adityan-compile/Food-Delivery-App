@@ -147,3 +147,31 @@ exports.addToCart = async (req, res) => {
       });
   }
 };
+
+exports.deleteFromCart = (req, res) => {
+  const user = req.user;
+
+  const body = req.body;
+
+  cart
+    .updateOne(
+      { user: ObjectId(user._id) },
+      {
+        $pull: {
+          items: {
+            item: body.item,
+          },
+        },
+      },
+      {
+        safe: true,
+      },
+    )
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({ status: 200, message: 'item remove from Cart' });
+    })
+    .catch((err) => {
+      res.status(500).json({ status: 500, message: 'Internal Server Error' });
+    });
+};

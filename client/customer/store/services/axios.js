@@ -49,7 +49,7 @@ instance.interceptors.response.use(
         .then(({status, data}) => {
           if (status === 200) {
             storage.set('USER', {
-              user: data.user,
+              ...data.user,
               accessToken: data.accessToken,
               refreshToken: data.refreshToken,
             });

@@ -27,11 +27,8 @@ const AccountScreen = () => {
         setUser(res.user);
       })
       .catch(e => {
-        console.log(e);
-        Alert.alert(
-          'Error',
-          'Error Loading User, Try again later or reinstall app and try again !',
-        );
+        console.error(e);
+        Alert.alert('Error', 'Error Loading User, Try again later!');
         setTimeout(navigate('Home'), 1000);
       });
   }, []);
