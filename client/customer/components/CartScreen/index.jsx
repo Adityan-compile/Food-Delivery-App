@@ -9,7 +9,7 @@ import global from '../../styles/global';
 
 const CartScreen = () => {
   const {navigate} = useNavigation();
-  const {getCart} = useContext(CartContext);
+  const {getCart, remove} = useContext(CartContext);
   const [cart, setCart] = useState({
     items: [],
   });
@@ -44,6 +44,24 @@ const CartScreen = () => {
 
   useFocusEffect(fetchData);
 
+  const handleDelete = item => {
+    setRefreshing(true);
+    remove(item)
+      .then(res => {
+        setCart(res);
+        let tot = 0;
+        res.items.forEach(elem => {
+          tot += elem.item.price * elem.quantity;
+        });
+        setTotal(tot);
+        setRefreshing(false);
+      })
+      .catch(e => {
+        setRefreshing(false);
+        Alert.alert('Error', 'Error Deleting item');
+      });
+  };
+
   return (
     <View style={global.container}>
       <ScrollView
@@ -52,7 +70,7 @@ const CartScreen = () => {
             refreshing={refreshing}
             onRefresh={fetchData}></RefreshControl>
         }>
-        <CartItems items={cart.items} />
+        <CartItems items={cart.items} handleDelete={handleDelete} />
         <PriceCard
           data={{
             total: total,

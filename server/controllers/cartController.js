@@ -151,27 +151,32 @@ exports.addToCart = async (req, res) => {
 exports.deleteFromCart = (req, res) => {
   const user = req.user;
 
-  const body = req.body;
+  const { item } = req.params;
+
+  console.log(item);
 
   cart
-    .updateOne(
+    .findOneAndUpdate(
       { user: ObjectId(user._id) },
       {
         $pull: {
           items: {
-            item: body.item,
+            item: item,
           },
         },
       },
       {
-        safe: true,
+        new: true,
       },
     )
+    .exec()
     .then((result) => {
-      console.log(result);
-      res.status(200).json({ status: 200, message: 'item remove from Cart' });
+      res
+        .status(200)
+        .json({ status: 200, message: 'item remove from Cart', cart: result });
     })
     .catch((err) => {
+      console.error(err);
       res.status(500).json({ status: 500, message: 'Internal Server Error' });
     });
 };

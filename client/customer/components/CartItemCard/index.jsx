@@ -5,7 +5,7 @@ import React from 'react';
 import global from '../../styles/global';
 import styles from './styles';
 
-const CartItemCard = ({data}) => {
+const CartItemCard = ({data, handleDelete}) => {
   return (
     <View style={global.container}>
       <View style={styles.card}>
@@ -21,7 +21,10 @@ const CartItemCard = ({data}) => {
             {data.item.price * data.quantity}
           </Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            handleDelete(data.item._id);
+          }}>
           <Icon
             type="ionicon"
             name="trash"
