@@ -13,7 +13,7 @@ const PriceCard = ({data}) => {
         color="black"
         title="Total"
         price={'\u20B9' + data.total || 0}
-        info={['Delivery: \u20B920', 'Tax & Fees: \u20B910']}
+        info={['Delivery: \u20B920', `GST: \u20B9 ${(5 / 100) * data.total}`]}
         button={
           <Button
             title="Checkout"
