@@ -42,6 +42,7 @@
        - **Declined**
    - [] View Order history
    - [] Cancel Order
+     - [] Refund
 
 ---
 
