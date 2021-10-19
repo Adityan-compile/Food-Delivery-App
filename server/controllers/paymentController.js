@@ -8,7 +8,7 @@ const ObjectId = mongoose.Types.ObjectId;
 exports.getPublishableKey = (req, res) => {
   res.status(200).json({
     status: 200,
-    PublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   });
 };
 

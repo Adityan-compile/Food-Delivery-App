@@ -4,8 +4,10 @@ import React from 'react';
 import {View} from 'react-native';
 import global from '../../styles/global';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 const PriceCard = ({data}) => {
+  const {navigate} = useNavigation();
   return (
     <View>
       <PricingCard
@@ -20,6 +22,7 @@ const PriceCard = ({data}) => {
             containerStyle={{
               margin: 5,
             }}
+            onPress={() => navigate('Payment')}
           />
         }></PricingCard>
     </View>
