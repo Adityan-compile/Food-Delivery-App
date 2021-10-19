@@ -1,4 +1,9 @@
+const mongoose = require('mongoose');
 const stripe = require('../config/stripe');
+const cart = require('../models/cart');
+const user = require('../models/user');
+
+const ObjectId = mongoose.Types.ObjectId;
 
 exports.getPublishableKey = (req, res) => {
   res.status(200).json({
@@ -7,15 +12,59 @@ exports.getPublishableKey = (req, res) => {
   });
 };
 
-exports.createPaymentSheet = async (req, res) => {
-  const customer = await stripe.customers.create();
+exports.createPaymentIntent = async (req, res) => {
+  const user = req.user;
+  let amount = 0;
+
+  cart
+    .findOne({ user: ObjectId(user._id) })
+    .populate('items.item')
+    .exec()
+    .then((result) => {
+      result.items.forEach((elem) => {
+        amount += elem.item.price * elem.quantity;
+      });
+    })
+    .catch((e) =>
+      res.status(500).json({ status: 500, message: 'Cannot Load User' }),
+    );
+
+  var customer = {};
+
+  if (user.customerId.length === 0) {
+    customer = await stripe.customers.create();
+    user
+      .updateOne(
+        { _id: ObjectId(user._id) },
+        {
+          customerId: customer.id,
+        },
+      )
+      .then(async (res) => {
+        if (res.nModified === 0) {
+          await stripe.customers.del(customer.id);
+          res
+            .status(409)
+            .json({ status: 409, message: 'Customer Creation Error' });
+        }
+      })
+      .catch(async (e) => {
+        await stripe.customers.del(customer.id);
+        res
+          .status(409)
+          .json({ status: 409, message: 'Customer Creation Error' });
+      });
+  } else {
+    customer.id = user.customerId;
+  }
+
   const ephemeralKey = await stripe.ephemeralKeys.create(
     { customer: customer.id },
     { apiVersion: '2020-08-27' },
   );
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 1099,
-    currency: 'eur',
+    amount: amount,
+    currency: 'inr',
     customer: customer.id,
     payment_method_types: [
       'bancontact',
