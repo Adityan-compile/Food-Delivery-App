@@ -1,21 +1,24 @@
+import {Button, Icon} from 'react-native-elements';
 import {
-  CardField,
-  CardFieldInput,
-  useStripe,
-} from '@stripe/stripe-react-native';
+  KeyboardAvoidingView,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
 
-import {Icon} from 'react-native-elements';
 import global from '../../styles/global';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {useStripe} from '@stripe/stripe-react-native';
 
 const PaymentScreen = () => {
   const {goBack} = useNavigation();
 
   const {confirmPayment, handleCardAction} = useStripe();
-  const [card, setCard] = useState(CardFieldInput.Details | null);
   return (
     <View style={global.container}>
       <TouchableOpacity onPress={() => goBack(null)}>
@@ -26,19 +29,42 @@ const PaymentScreen = () => {
           size={40}
           containerStyle={styles.backIcon}></Icon>
       </TouchableOpacity>
-      <CardField
-        postalCodeEnabled={true}
-        placeholder={{
-          number: '4242 4242 4242 4242',
-        }}
-        cardStyle={{
-          backgroundColor: 'white',
-          color: 'black',
-        }}
-        onCardChange={cardDetails => {
-          setCard(cardDetails);
-        }}
-        style={styles.card}></CardField>
+      <ScrollView style={{marginHorizontal: 20}}>
+        <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
+          <Text style={styles.label}>Name</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="John Doe"
+            autoComplete="name"></TextInput>
+          <Text style={styles.label}>Delivery Address</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Nulla St.Mankato ..."
+            autoComplete="postal-address"></TextInput>
+          <Text style={styles.label}>Phone</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Phone Number"
+            autoComplete="tel"></TextInput>
+          <Text style={styles.label}>Zip Code</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Postal Code"
+            autoComplete="postal-code"></TextInput>
+          <TouchableWithoutFeedback>
+            <Button
+              containerStyle={styles.checkoutButton}
+              title="Proceed to Pay"
+              icon={
+                <Icon
+                  type="ionicon"
+                  name="caret-forward-circle-outline"
+                  color="white"
+                  containerStyle={{marginRight: 5}}></Icon>
+              }></Button>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </View>
   );
 };
