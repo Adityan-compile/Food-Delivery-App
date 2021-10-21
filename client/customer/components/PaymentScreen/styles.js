@@ -1,10 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  backIcon: {
-    alignSelf: 'flex-start',
-    margin: 20,
-  },
   screenContainer: {
     margin: 20,
   },
@@ -32,6 +28,14 @@ const styles = StyleSheet.create({
     elevation: 5,
     borderRadius: 5,
     margin: 10,
+  },
+  backIcon: {
+    alignSelf: 'flex-start',
+    margin: 20,
+  },
+  heading: {
+    margin: 0,
+    alignSelf: 'flex-end',
   },
 });
 
