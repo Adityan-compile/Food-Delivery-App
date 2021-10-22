@@ -11,13 +11,13 @@ const payments = {
         .catch(e => reject(e));
     });
   },
-  createPaymentIntent: () => {
+  getPaymentIntent: () => {
     return new Promise((resolve, reject) => {
       axios
         .get('/payments/intents/create')
         .then(({data}) =>
           resolve({
-            paymentIntent: data.paymentIntent,
+            clientSecret: data.clientSecret,
             ephemeralKey: data.ephemeralKey,
             customerId: data.customer,
           }),

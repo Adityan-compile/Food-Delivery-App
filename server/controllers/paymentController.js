@@ -76,7 +76,7 @@ exports.createPaymentIntent = async (req, res) => {
   });
   res.json({
     status: 200,
-    paymentIntent: paymentIntent.client_secret,
+    clientSecret: paymentIntent.client_secret,
     ephemeralKey: ephemeralKey.secret,
     customer: customer.id,
   });
