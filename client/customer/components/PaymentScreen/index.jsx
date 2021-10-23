@@ -39,31 +39,30 @@ const PaymentScreen = () => {
   const {getPaymentIntent} = useContext(PaymentsContext);
 
   const openPaymentSheet = () => {
-    console.log(name, address, phone, zip);
-    if (!name) {
-      return Alert.alert(
-        'Warning',
-        'Fill out All Fields to Proceed to Checkout',
-      );
-    }
-    if (!address) {
-      return Alert.alert(
-        'Warning',
-        'Fill out All Fields to Proceed to Checkout',
-      );
-    }
-    if (!phone) {
-      return Alert.alert(
-        'Warning',
-        'Fill out All Fields to Proceed to Checkout',
-      );
-    }
-    if (!zip) {
-      return Alert.alert(
-        'Warning',
-        'Fill out All Fields to Proceed to Checkout',
-      );
-    }
+    // if (!name) {
+    //   return Alert.alert(
+    //     'Warning',
+    //     'Fill out All Fields to Proceed to Checkout',
+    //   );
+    // }
+    // if (!address) {
+    //   return Alert.alert(
+    //     'Warning',
+    //     'Fill out All Fields to Proceed to Checkout',
+    //   );
+    // }
+    // if (!phone) {
+    //   return Alert.alert(
+    //     'Warning',
+    //     'Fill out All Fields to Proceed to Checkout',
+    //   );
+    // }
+    // if (!zip) {
+    //   return Alert.alert(
+    //     'Warning',
+    //     'Fill out All Fields to Proceed to Checkout',
+    //   );
+    // }
 
     getPaymentIntent()
       .then(async res => {
@@ -83,12 +82,13 @@ const PaymentScreen = () => {
 
         if (err) {
           Alert.alert('', 'Payment Failed');
-          navig;
+          goBack(null);
         } else {
           Alert.alert(
             'Order Placed',
             'Dear, Customer your order is Placed, Please Check your Order Status from your Accounts Tab',
           );
+          // Save Order and Redirect Customer
         }
       })
       .catch(e => Alert.alert('Error', 'Cannot Load Payment Gateway'));

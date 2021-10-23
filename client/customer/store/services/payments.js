@@ -14,7 +14,7 @@ const payments = {
   getPaymentIntent: () => {
     return new Promise((resolve, reject) => {
       axios
-        .get('/payments/intents/create')
+        .post('/payments/intents/create')
         .then(({data}) =>
           resolve({
             clientSecret: data.clientSecret,

@@ -6,7 +6,6 @@ const { ACCESS_TOKEN_KEY } = process.env;
 
 module.exports = async (req, res, next) => {
   const header = req.headers.authorization;
-
   const token = header && header.split(' ')[1];
 
   if (!token) {
