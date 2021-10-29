@@ -60,12 +60,14 @@ const usersRouter = require('./routes/users');
 const restaurantsRouter = require('./routes/restaurants');
 const cartRouter = require('./routes/cart');
 const paymentsRouter = require('./routes/payments');
+const ordersRouter = require('./routes/orders');
 
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/restaurants', restaurantsRouter);
 app.use('/api/cart/', cartRouter);
 app.use('/api/payments', paymentsRouter);
+app.use('/api/orders/', ordersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

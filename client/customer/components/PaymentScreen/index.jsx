@@ -39,31 +39,6 @@ const PaymentScreen = () => {
   const {getPaymentIntent} = useContext(PaymentsContext);
 
   const openPaymentSheet = () => {
-    // if (!name) {
-    //   return Alert.alert(
-    //     'Warning',
-    //     'Fill out All Fields to Proceed to Checkout',
-    //   );
-    // }
-    // if (!address) {
-    //   return Alert.alert(
-    //     'Warning',
-    //     'Fill out All Fields to Proceed to Checkout',
-    //   );
-    // }
-    // if (!phone) {
-    //   return Alert.alert(
-    //     'Warning',
-    //     'Fill out All Fields to Proceed to Checkout',
-    //   );
-    // }
-    // if (!zip) {
-    //   return Alert.alert(
-    //     'Warning',
-    //     'Fill out All Fields to Proceed to Checkout',
-    //   );
-    // }
-
     getPaymentIntent()
       .then(async res => {
         const {error} = await initPaymentSheet({
@@ -81,6 +56,9 @@ const PaymentScreen = () => {
         });
 
         if (err) {
+          if (err.code === 'Canceled') {
+            return;
+          }
           Alert.alert('', 'Payment Failed');
           goBack(null);
         } else {
