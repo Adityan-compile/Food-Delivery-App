@@ -7,6 +7,9 @@ import CartContext from '../store/contexts/cartContext';
 import CartProvider from '../store/providers/CartProvider';
 import Login from '../screens/Login';
 import {NavigationContainer} from '@react-navigation/native';
+import OrderContext from '../store/contexts/orderContext';
+import OrderProvider from '../store/providers/OrderProvider';
+import Orders from '../screens/Orders';
 import Payment from '../screens/Payment';
 import PaymentsContext from '../store/contexts/paymentsContext';
 import PaymentsProvider from '../store/providers/PaymentsProvider';
@@ -48,6 +51,11 @@ const Routes = () => {
         <Stack.Group>
           <Stack.Screen name="Tabs" component={Tabs}></Stack.Screen>
           <Stack.Screen name="Payment" component={Payment}></Stack.Screen>
+          <Stack.Screen name="Orders" component={Orders}></Stack.Screen>
+          {/* <Stack.Screen name="View Item" component={ViewItem}></Stack.Screen>
+          <Stack.Screen
+            name="View Restaurant"
+            component={ViewRestaurant}></Stack.Screen> */}
         </Stack.Group>
       );
     } else {
@@ -66,16 +74,16 @@ const Routes = () => {
         <RestaurantContext.Provider value={RestaurantProvider}>
           <CartContext.Provider value={CartProvider}>
             <PaymentsContext.Provider value={PaymentsProvider}>
-              {/* <StripeProvider publishableKey={publishableKey}> */}
-              <NavigationContainer>
-                <Stack.Navigator
-                  screenOptions={{
-                    headerShown: false,
-                  }}>
-                  {renderGroup()}
-                </Stack.Navigator>
-              </NavigationContainer>
-              {/* </StripeProvider> */}
+              <OrderContext.Provider value={OrderProvider}>
+                <NavigationContainer>
+                  <Stack.Navigator
+                    screenOptions={{
+                      headerShown: false,
+                    }}>
+                    {renderGroup()}
+                  </Stack.Navigator>
+                </NavigationContainer>
+              </OrderContext.Provider>
             </PaymentsContext.Provider>
           </CartContext.Provider>
         </RestaurantContext.Provider>

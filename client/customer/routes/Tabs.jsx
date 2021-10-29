@@ -1,3 +1,4 @@
+import {hideTabButtons, setTabIcons} from './utils';
 import {useContext, useEffect, useState} from 'react';
 
 import Account from '../screens/Account';
@@ -8,7 +9,6 @@ import React from 'react';
 import ViewItem from '../screens/ViewItem';
 import ViewRestaurant from '../screens/ViewRestaurant';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {setTabIcons} from './utils';
 
 const Tabs = () => {
   const Tab = createBottomTabNavigator();
@@ -22,6 +22,7 @@ const Tabs = () => {
         headerTitle: '',
         tabBarIcon: ({color, size}) => setTabIcons(size, color, route),
         headerShown: false,
+        tabBarButton: hideTabButtons(route),
         // header: Header,
       })}>
       <Tab.Group>
@@ -31,7 +32,7 @@ const Tabs = () => {
           component={ViewRestaurant}></Tab.Screen>
         <Tab.Screen name="View Item" component={ViewItem}></Tab.Screen>
         <Tab.Screen name="Cart" component={Cart}></Tab.Screen>
-        {/* <Tab.Screen name="Favourites" component={Favourites}></Tab.Screen> */}
+        <Tab.Screen name="Favourites" component={Favourites}></Tab.Screen>
         <Tab.Screen name="Account" component={Account}></Tab.Screen>
       </Tab.Group>
     </Tab.Navigator>

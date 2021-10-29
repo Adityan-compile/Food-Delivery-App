@@ -18,3 +18,15 @@ export const setTabIcons = (size, color, route) => {
     return <Icon name="pizza" type="ionicon" color={color} size={size}></Icon>;
   }
 };
+
+export const hideTabButtons = route => {
+  const excluded = ['View Restaurant', 'View Item'];
+
+  if (excluded.includes(route.name)) {
+    return () => {
+      return null;
+    };
+  } else {
+    undefined;
+  }
+};

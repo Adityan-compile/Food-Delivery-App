@@ -13,6 +13,7 @@ import React, {useContext, useEffect, useState} from 'react';
 
 import AndroidKeyboardAdjust from 'react-native-android-keyboard-adjust';
 import {KeyboardAwareScrollView} from '@codler/react-native-keyboard-aware-scroll-view';
+import OrderContext from '../../store/contexts/orderContext';
 import PaymentsContext from '../../store/contexts/paymentsContext';
 import global from '../../styles/global';
 import styles from './styles';
@@ -20,7 +21,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useStripe} from '@stripe/stripe-react-native';
 
 const PaymentScreen = () => {
-  const {goBack} = useNavigation();
+  const {goBack, navigate} = useNavigation();
 
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
 
@@ -37,6 +38,8 @@ const PaymentScreen = () => {
   }, []);
 
   const {getPaymentIntent} = useContext(PaymentsContext);
+
+  const {placeOrder} = useContext(OrderContext);
 
   const openPaymentSheet = () => {
     getPaymentIntent()
@@ -62,11 +65,15 @@ const PaymentScreen = () => {
           Alert.alert('', 'Payment Failed');
           goBack(null);
         } else {
-          Alert.alert(
-            'Order Placed',
-            'Dear, Customer your order is Placed, Please Check your Order Status from your Accounts Tab',
-          );
-          // Save Order and Redirect Customer
+          placeOrder(res.clientSecret)
+            .then(() => {
+              Alert.alert(
+                'Order Placed',
+                'Dear, Customer your order is Placed, Please Check your Order Status from your Accounts Tab',
+              );
+              navigate('Orders');
+            })
+            .catch(e => {});
         }
       })
       .catch(e => Alert.alert('Error', 'Cannot Load Payment Gateway'));
