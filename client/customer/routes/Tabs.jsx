@@ -5,6 +5,7 @@ import Account from '../screens/Account';
 import Cart from '../screens/Cart';
 import Favourites from '../screens/Favourites';
 import Home from '../screens/Home';
+import Orders from '../screens/Orders';
 import React from 'react';
 import ViewItem from '../screens/ViewItem';
 import ViewRestaurant from '../screens/ViewRestaurant';
@@ -34,6 +35,7 @@ const Tabs = () => {
         <Tab.Screen name="Cart" component={Cart}></Tab.Screen>
         <Tab.Screen name="Favourites" component={Favourites}></Tab.Screen>
         <Tab.Screen name="Account" component={Account}></Tab.Screen>
+        <Tab.Screen name="Orders" component={Orders}></Tab.Screen>
       </Tab.Group>
     </Tab.Navigator>
   );

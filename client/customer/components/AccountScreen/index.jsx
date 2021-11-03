@@ -79,10 +79,10 @@ const AccountScreen = () => {
               </ListItem.Content>
             </ListItem>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigate('Orders')}>
             <ListItem bottomDivider>
               <ListItem.Content>
-                <ListItem.Title>Previous orders</ListItem.Title>
+                <ListItem.Title>Orders</ListItem.Title>
               </ListItem.Content>
             </ListItem>
           </TouchableOpacity>

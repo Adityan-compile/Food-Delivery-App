@@ -9,19 +9,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#fe6c02',
     elevation: 10,
   },
-  cartHeader: {
+  commonHeader: {
     height: '13%',
     width: width,
     backgroundColor: '#fe6c02',
     elevation: 10,
+    borderBottomStartRadius: 20,
+    borderBottomEndRadius: 20,
+    justifyContent: 'center',
   },
   headingText: {
     color: 'white',
     fontSize: 25,
     fontWeight: 'bold',
     fontStyle: 'italic',
-    margin: 20,
-    marginLeft: 10,
+    margin: 10,
+    marginRight: 20,
   },
   input: {
     backgroundColor: 'white',
@@ -30,6 +33,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginLeft: 5,
     marginRight: 5,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  backIcon: {
+    margin: 10,
+    marginLeft: 20,
   },
 });
 

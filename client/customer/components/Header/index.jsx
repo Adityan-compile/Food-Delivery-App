@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Text, TextInput, View} from 'react-native';
 
+import {Icon} from 'react-native-elements';
 import global from '../../styles/global';
 import styles from './styles';
 import {useRoute} from '@react-navigation/native';
@@ -24,8 +25,20 @@ const Header = ({handleSubmit}) => {
     );
   } else if (route.name === 'Cart') {
     return (
-      <View style={styles.cartHeader}>
+      <View style={styles.commonHeader}>
         <Text style={styles.headingText}>Cart</Text>
+      </View>
+    );
+  } else if (route.name === 'Orders') {
+    return (
+      <View style={[styles.commonHeader, styles.row]}>
+        <Icon
+          name="arrow-back-circle-outline"
+          type="ionicon"
+          color="white"
+          size={35}
+          style={styles.backIcon}></Icon>
+        <Text style={styles.headingText}>Order History</Text>
       </View>
     );
   } else {

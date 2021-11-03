@@ -1,14 +1,8 @@
-import {Text, View} from 'react-native';
-
+import OrderScreen from '../../components/OrderScreen';
 import React from 'react';
-import global from '../../styles/global';
 
 const Orders = () => {
-  return (
-    <View style={global.container}>
-      <Text>Orders</Text>
-    </View>
-  );
+  return <OrderScreen />;
 };
 
 export default Orders;

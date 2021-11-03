@@ -20,7 +20,7 @@ export const setTabIcons = (size, color, route) => {
 };
 
 export const hideTabButtons = route => {
-  const excluded = ['View Restaurant', 'View Item'];
+  const excluded = ['View Restaurant', 'View Item', 'Orders'];
 
   if (excluded.includes(route.name)) {
     return () => {

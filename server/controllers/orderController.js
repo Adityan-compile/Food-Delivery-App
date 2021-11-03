@@ -39,3 +39,19 @@ exports.saveOrder = (req, res) => {
       res.status(500).json({ status: 500, message: 'Cannot Save Order' });
     });
 };
+
+exports.retriveOrders = (req, res) => {
+  const user = req.user;
+
+  order
+    .find({ user: user?._id })
+    .then((orders) => {
+      res.status(200).json({ status: 200, orders: orders });
+    })
+    .catch((e) => {
+      res.status(500).json({
+        status: 500,
+        message: 'Cannot Retrive Orders',
+      });
+    });
+};

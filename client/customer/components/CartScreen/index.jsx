@@ -30,6 +30,7 @@ const CartScreen = () => {
       })
       .catch(e => {
         setRefreshing(false);
+        console.error(e);
         Alert.alert(
           'Error',
           'Error Loading Your Cart Please Try Again Later !!',
