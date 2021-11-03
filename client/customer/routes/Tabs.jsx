@@ -18,13 +18,20 @@ const Tabs = () => {
       initialRouteName="Home"
       screenOptions={({route}) => ({
         tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
+        tabBarInactiveTintColor: 'grey',
         tabBarShowLabel: false,
         headerTitle: '',
         tabBarIcon: ({color, size}) => setTabIcons(size, color, route),
         headerShown: false,
         tabBarButton: hideTabButtons(route),
-        // header: Header,
+        tabBarStyle: {
+          margin: 10,
+          borderRadius: 15,
+          elevation: 10,
+          backgroundColor: '#f5f5f5',
+          position: 'absolute',
+          opacity: 0.95,
+        },
       })}>
       <Tab.Group>
         <Tab.Screen name="Home" component={Home}></Tab.Screen>

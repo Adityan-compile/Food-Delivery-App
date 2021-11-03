@@ -4,7 +4,7 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   homeHeader: {
-    height: '22%',
+    height: '18%',
     width: width,
     backgroundColor: '#fe6c02',
     elevation: 10,

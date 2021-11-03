@@ -45,6 +45,9 @@ exports.retriveOrders = (req, res) => {
 
   order
     .find({ user: user?._id })
+    .populate('restaurant')
+    .populate('items.item')
+    .exec()
     .then((orders) => {
       res.status(200).json({ status: 200, orders: orders });
     })
