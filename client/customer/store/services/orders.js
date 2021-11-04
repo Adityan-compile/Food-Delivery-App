@@ -11,6 +11,16 @@ const orders = {
         .catch(e => reject(e));
     });
   },
+  fetchOrders: () => {
+    return new Promise((resolve, reject) => {
+      axios
+        .post('/orders')
+        .then(({data}) => {
+          resolve(data.orders);
+        })
+        .catch(e => reject(e));
+    });
+  },
 };
 
 export default orders;

@@ -44,7 +44,7 @@ exports.retriveOrders = (req, res) => {
   const user = req.user;
 
   order
-    .find({ user: user?._id })
+    .find({ customer: user?._id })
     .populate('restaurant')
     .populate('items.item')
     .exec()

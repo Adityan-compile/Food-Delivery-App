@@ -11,7 +11,7 @@ const OrderCard = ({index, data}) => {
       <Text style={styles.title}>Marriot</Text>
       <Text style={styles.orderNo}>
         Order {'#'}
-        {index}
+        {index + 1}
       </Text>
       <Text style={styles.total}>{'\u20B9'}500</Text>
       {/* <Button
