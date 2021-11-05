@@ -25,6 +25,7 @@ exports.saveOrder = (req, res) => {
         customer: user._id,
         payment: paymentIntent,
         items: result?.items,
+        status: 'Placed',
       });
       newOrder
         .save()
@@ -45,7 +46,7 @@ exports.retriveOrders = (req, res) => {
 
   order
     .find({ customer: user?._id })
-    .populate('restaurant')
+    .populate('restaurant', '-password')
     .populate('items.item')
     .exec()
     .then((orders) => {

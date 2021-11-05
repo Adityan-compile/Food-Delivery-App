@@ -14,6 +14,10 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'restaurant',
   },
+  status: {
+    type: String,
+    required: true,
+  },
   items: [
     {
       item: {

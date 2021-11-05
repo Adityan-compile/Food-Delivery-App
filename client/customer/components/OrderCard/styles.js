@@ -16,12 +16,6 @@ const styles = StyleSheet.create({
   btn: {
     margin: 6,
   },
-  orderNo: {
-    fontStyle: 'italic',
-    fontSize: 15,
-    color: 'grey',
-    marginLeft: 10,
-  },
   total: {
     color: '#ff421c',
     fontSize: 15,
@@ -31,6 +25,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     fontStyle: 'italic',
+    color: 'grey',
+    marginLeft: 10,
+  },
+  infoText: {
+    fontStyle: 'italic',
+    fontSize: 15,
     color: 'grey',
     marginLeft: 10,
   },

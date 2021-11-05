@@ -1,4 +1,11 @@
-import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import React, {useContext, useState} from 'react';
 
@@ -25,55 +32,56 @@ const ItemScreen = ({data}) => {
 
   return (
     <View style={global.container}>
-      <Image
-        style={styles.cover}
-        source={{
-          uri: data.image,
-        }}></Image>
-      <Text style={styles.heading}>{data.name}</Text>
-
-      <View
-        style={[global.container, {flexDirection: 'row', flexWrap: 'wrap'}]}>
-        <Text style={styles.originalPrice}>
-          {'\u20B9'}
-          {data.originalPrice}
-        </Text>
-        <Text style={styles.price}>
-          {'\u20B9'}
-          {data.price}
-        </Text>
-        <Text style={styles.info}>{data.description}</Text>
-        <NumericInput
-          value={quantity}
-          onChange={value => {
-            if (value === 0) {
-              setQuantity(1);
-            } else {
-              setQuantity(value);
+      <ScrollView>
+        <Image
+          style={styles.cover}
+          source={{
+            uri: data.image,
+          }}></Image>
+        <Text style={styles.heading}>{data.name}</Text>
+        <View
+          style={[global.container, {flexDirection: 'row', flexWrap: 'wrap'}]}>
+          <Text style={styles.originalPrice}>
+            {'\u20B9'}
+            {data.originalPrice}
+          </Text>
+          <Text style={styles.price}>
+            {'\u20B9'}
+            {data.price}
+          </Text>
+          <Text style={styles.info}>{data.description}</Text>
+          <NumericInput
+            value={quantity}
+            onChange={value => {
+              if (value === 0) {
+                setQuantity(1);
+              } else {
+                setQuantity(value);
+              }
+            }}
+            minValue={1}
+            maxValue={data.portionsAvailable}
+            containerStyle={styles.quantity}
+            rounded="true"></NumericInput>
+          <Text style={styles.price}>
+            {'\u20B9'}
+            {data.price * quantity}
+          </Text>
+        </View>
+        <TouchableOpacity>
+          <Button
+            title="Add to Cart"
+            icon={
+              <Icon
+                name="cart"
+                type="ionicon"
+                color="white"
+                style={{marginRight: 5}}></Icon>
             }
-          }}
-          minValue={1}
-          maxValue={data.portionsAvailable}
-          containerStyle={styles.quantity}
-          rounded="true"></NumericInput>
-        <Text style={styles.price}>
-          {'\u20B9'}
-          {data.price * quantity}
-        </Text>
-      </View>
-      <TouchableOpacity>
-        <Button
-          title="Add to Cart"
-          icon={
-            <Icon
-              name="cart"
-              type="ionicon"
-              color="white"
-              style={{marginRight: 5}}></Icon>
-          }
-          onPress={() => handleSubmit()}
-          buttonStyle={styles.button}></Button>
-      </TouchableOpacity>
+            onPress={() => handleSubmit()}
+            buttonStyle={styles.button}></Button>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };

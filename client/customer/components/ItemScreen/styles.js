@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 16,
     color: 'grey',
-    margin: 10,
+    marginVertical: 10,
+    marginHorizontal: 10,
     padding: 5,
     letterSpacing: 2,
   },
@@ -47,7 +48,6 @@ const styles = StyleSheet.create({
   },
   quantity: {
     marginHorizontal: 10,
-    marginBottom: 10,
   },
 });
 
