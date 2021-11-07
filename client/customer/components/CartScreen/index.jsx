@@ -2,14 +2,14 @@ import {Alert, RefreshControl, ScrollView, View} from 'react-native';
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
-import CartContext from '../../store/contexts/cartContext';
 import CartItems from '../CartItems';
+import Context from '../../store/contexts';
 import PriceCard from '../PriceCard';
 import global from '../../styles/global';
 
 const CartScreen = () => {
   const {navigate} = useNavigation();
-  const {getCart, remove} = useContext(CartContext);
+  const {getCart, remove} = useContext(Context);
   const [cart, setCart] = useState({
     items: [],
   });

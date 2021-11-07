@@ -9,9 +9,8 @@ import {
 } from 'react-native';
 import React, {useContext, useState} from 'react';
 
-import AuthContext from '../../store/contexts/authContext';
-// import Icon from 'react-native-vector-icons/FontAwesome';
 import {Button} from 'react-native-elements';
+import Context from '../../store/contexts';
 import Logo from '../../assets/logo.png';
 import global from '../../styles/global';
 import styles from './styles.js';
@@ -24,7 +23,7 @@ const LoginScreen = () => {
 
   const {navigate} = useNavigation();
 
-  const {login} = useContext(AuthContext);
+  const {login} = useContext(Context);
 
   const handleSubmit = () => {
     login({

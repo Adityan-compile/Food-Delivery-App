@@ -2,12 +2,13 @@ import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {RefreshControl, ScrollView, View} from 'react-native';
 
 import AndroidKeyboardAdjust from 'react-native-android-keyboard-adjust';
+// import RestaurantContext from '../../store/contexts/restaurantContext';
+import Context from '../../store/contexts';
 import Header from '../../components/Header';
-import RestaurantContext from '../../store/contexts/restaurantContext';
 import Trending from '../../components/Trending';
 
 const Home = () => {
-  const {getAllRestaurants, searchRestaurants} = useContext(RestaurantContext);
+  const {getAllRestaurants, searchRestaurants} = useContext(Context);
   const [restaurants, setRestaurants] = useState([]);
   const [error, setError] = useState('');
   const [refreshing, setRefreshing] = useState(false);

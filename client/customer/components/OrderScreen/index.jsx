@@ -10,6 +10,7 @@ import {useFocusEffect} from '@react-navigation/native';
 const OrderScreen = () => {
   const [orders, setOrders] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const [retries, setRetries] = useState(0);
 
   const {fetchOrders} = useContext(OrderContext);
 
@@ -21,9 +22,13 @@ const OrderScreen = () => {
         setRefreshing(false);
       })
       .catch(e => {
-        setRefreshing(false);
-        Alert.alert('Error', 'Cannot Load Your Orders');
-        fetchData();
+        if (retries === 0) {
+          setRetries(retries++);
+          fetchData();
+        } else {
+          setRefreshing(false);
+          Alert.alert('Error', 'Cannot Load Your Orders');
+        }
       });
   }, []);
 

@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import React, {useContext, useState} from 'react';
 
-import AuthContext from '../../store/contexts/authContext';
 import {Button} from 'react-native-elements';
+// import AuthContext from '../../store/contexts/authContext';
+import Context from '../../store/contexts';
 import Logo from '../../assets/logo.png';
 import global from '../../styles/global';
 import styles from './styles.js';
@@ -21,7 +22,7 @@ const SignupScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const {signup} = useContext(AuthContext);
+  const {signup} = useContext(Context);
 
   const {navigate} = useNavigation();
 

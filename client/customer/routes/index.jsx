@@ -1,18 +1,14 @@
 import {Alert, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
-import AuthContext from '../store/contexts/authContext';
 import AuthProvider from '../store/providers/AuthProvider';
-import CartContext from '../store/contexts/cartContext';
 import CartProvider from '../store/providers/CartProvider';
+import Context from '../store/contexts';
 import Login from '../screens/Login';
 import {NavigationContainer} from '@react-navigation/native';
-import OrderContext from '../store/contexts/orderContext';
 import OrderProvider from '../store/providers/OrderProvider';
 import Payment from '../screens/Payment';
-import PaymentsContext from '../store/contexts/paymentsContext';
 import PaymentsProvider from '../store/providers/PaymentsProvider';
-import RestaurantContext from '../store/contexts/restaurantContext';
 import RestaurantProvider from '../store/providers/RestaurantProvider';
 import Signup from '../screens/Signup';
 import Tabs from './Tabs';
@@ -64,24 +60,23 @@ const Routes = () => {
 
   return (
     <View style={{flex: 1}}>
-      <AuthContext.Provider value={AuthProvider}>
-        <RestaurantContext.Provider value={RestaurantProvider}>
-          <CartContext.Provider value={CartProvider}>
-            <PaymentsContext.Provider value={PaymentsProvider}>
-              <OrderContext.Provider value={OrderProvider}>
-                <NavigationContainer>
-                  <Stack.Navigator
-                    screenOptions={{
-                      headerShown: false,
-                    }}>
-                    {renderGroup()}
-                  </Stack.Navigator>
-                </NavigationContainer>
-              </OrderContext.Provider>
-            </PaymentsContext.Provider>
-          </CartContext.Provider>
-        </RestaurantContext.Provider>
-      </AuthContext.Provider>
+      <Context.Provider
+        value={{
+          ...AuthProvider,
+          ...RestaurantProvider,
+          ...CartProvider,
+          ...PaymentsProvider,
+          ...OrderProvider,
+        }}>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}>
+            {renderGroup()}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Context.Provider>
     </View>
   );
 };

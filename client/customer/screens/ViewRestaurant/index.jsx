@@ -7,7 +7,8 @@ import React, {
 } from 'react';
 import {Text, View} from 'react-native';
 
-import RestaurantContext from '../../store/contexts/restaurantContext';
+// import RestaurantContext from '../../store/contexts/restaurantContext';
+import Context from '../../store/contexts';
 import RestaurantScreen from '../../components/RestaurantScreen';
 import global from '../../styles/global';
 import {useFocusEffect} from '@react-navigation/native';
@@ -21,7 +22,7 @@ const ViewRestaurant = () => {
 
   const route = useRoute();
   const id = route.params.id;
-  const {getRestaurantById} = useContext(RestaurantContext);
+  const {getRestaurantById} = useContext(Context);
   const fetchData = useCallback(() => {
     getRestaurantById(id)
       .then(res => setRestaurant(res))

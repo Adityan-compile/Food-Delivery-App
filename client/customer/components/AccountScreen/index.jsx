@@ -2,14 +2,14 @@ import {Alert, Text, TouchableOpacity, View} from 'react-native';
 import {Avatar, Button, ListItem} from 'react-native-elements';
 import React, {useContext, useEffect, useState} from 'react';
 
-import AuthContext from '../../store/contexts/authContext';
+import Context from '../../store/contexts';
 import global from '../../styles/global';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 
 const AccountScreen = () => {
   const [user, setUser] = useState({name: ''});
-  const {getAuthState} = useContext(AuthContext);
+  const {getAuthState} = useContext(Context);
   const {navigate} = useNavigation();
 
   var colors = [

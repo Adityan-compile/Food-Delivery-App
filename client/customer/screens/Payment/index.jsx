@@ -1,13 +1,14 @@
 import {ActivityIndicator, View} from 'react-native';
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 
+import Context from '../../store/contexts';
 import PaymentScreen from '../../components/PaymentScreen';
 import PaymentsContext from '../../store/contexts/paymentsContext';
 import {StripeProvider} from '@stripe/stripe-react-native';
 import global from '../../styles/global';
 
 const Payment = () => {
-  const {getPublishableKey} = useContext(PaymentsContext);
+  const {getPublishableKey} = useContext(Context);
   const [publishableKey, setPublishableKey] = useState('');
   useEffect(() => {
     getPublishableKey()

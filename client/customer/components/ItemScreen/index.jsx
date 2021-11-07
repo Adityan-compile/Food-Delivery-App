@@ -9,7 +9,7 @@ import {
 import {Button, Icon} from 'react-native-elements';
 import React, {useContext, useState} from 'react';
 
-import CartContext from '../../store/contexts/cartContext';
+import Context from '../../store/contexts';
 import NumericInput from 'react-native-numeric-input';
 import global from '../../styles/global';
 import styles from './styles';
@@ -18,7 +18,7 @@ import {useNavigation} from '@react-navigation/native';
 const ItemScreen = ({data}) => {
   const [quantity, setQuantity] = useState(1);
 
-  const {addToCart} = useContext(CartContext);
+  const {addToCart} = useContext(Context);
 
   const {navigate} = useNavigation();
 
