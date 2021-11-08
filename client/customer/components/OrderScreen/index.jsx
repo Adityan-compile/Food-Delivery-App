@@ -3,7 +3,6 @@ import React, {useCallback, useContext, useEffect, useState} from 'react';
 
 import Header from '../Header';
 import OrderCard from '../OrderCard';
-import OrderContext from '../../store/contexts/orderContext';
 import global from '../../styles/global';
 import {useFocusEffect} from '@react-navigation/native';
 

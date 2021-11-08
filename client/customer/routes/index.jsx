@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import AuthProvider from '../store/providers/AuthProvider';
 import CartProvider from '../store/providers/CartProvider';
 import Context from '../store/contexts';
+import FavouritesProvider from '../store/providers/FavouritesProvider';
 import Login from '../screens/Login';
 import {NavigationContainer} from '@react-navigation/native';
 import OrderProvider from '../store/providers/OrderProvider';
@@ -67,6 +68,7 @@ const Routes = () => {
           ...CartProvider,
           ...PaymentsProvider,
           ...OrderProvider,
+          ...FavouritesProvider,
         }}>
         <NavigationContainer>
           <Stack.Navigator

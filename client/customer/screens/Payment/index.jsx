@@ -3,7 +3,6 @@ import React, {useCallback, useContext, useEffect, useState} from 'react';
 
 import Context from '../../store/contexts';
 import PaymentScreen from '../../components/PaymentScreen';
-import PaymentsContext from '../../store/contexts/paymentsContext';
 import {StripeProvider} from '@stripe/stripe-react-native';
 import global from '../../styles/global';
 

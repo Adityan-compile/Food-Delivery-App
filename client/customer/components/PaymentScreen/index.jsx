@@ -12,10 +12,8 @@ import {Button, Icon} from 'react-native-elements';
 import React, {useContext, useEffect, useState} from 'react';
 
 import AndroidKeyboardAdjust from 'react-native-android-keyboard-adjust';
-// import PaymentsContext from '../../store/contexts/paymentsContext';
 import Context from '../../store/contexts';
 import {KeyboardAwareScrollView} from '@codler/react-native-keyboard-aware-scroll-view';
-import OrderContext from '../../store/contexts/orderContext';
 import global from '../../styles/global';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';

@@ -6,25 +6,27 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import React, {useState} from 'react';
 
 import {Divider} from 'react-native-elements';
 import {Icon} from 'react-native-elements';
 import ItemCard from '../ItemCard';
-import React from 'react';
 import global from '../../styles/global';
 import styles from './styles';
 
-const RestaurantScreen = ({data}) => {
+const RestaurantScreen = ({data, handler, favourite}) => {
   return (
     <View style={global.container}>
       <ScrollView>
         <ImageBackground style={styles.cover} source={{uri: data.image}}>
-          <Icon
-            name="heart-outline"
-            type="ionicon"
-            color="white"
-            size={30}
-            style={styles.heartIcon}></Icon>
+          <TouchableOpacity onPress={() => handler()}>
+            <Icon
+              name={favourite ? 'heart' : 'heart-outline'}
+              type="ionicon"
+              color={favourite ? 'tomato' : 'white'}
+              size={30}
+              style={styles.heartIcon}></Icon>
+          </TouchableOpacity>
         </ImageBackground>
         <Text style={styles.heading}>{data.name}</Text>
         <Text style={styles.cuisines}>{data.cuisines}</Text>
