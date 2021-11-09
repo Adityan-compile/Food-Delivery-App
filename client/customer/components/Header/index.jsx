@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Text, TextInput, View} from 'react-native';
 
 import {Icon} from 'react-native-elements';
-import global from '../../styles/global';
 import styles from './styles';
 import {useRoute} from '@react-navigation/native';
 

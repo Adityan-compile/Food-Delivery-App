@@ -1,4 +1,4 @@
-import pull from 'lodash/pull';
+import remove from 'lodash/remove';
 import storage from '../../storage';
 
 const favourites = {
@@ -40,9 +40,19 @@ const favourites = {
         .get('FAVOURITES')
         .then(res => {
           if (res === null || res === undefined) return resolve(null);
-          pull(res, restaurant);
+          remove(res, elem => {
+            return restaurant._id === elem._id;
+          });
           resolve(null);
         })
+        .catch(e => reject(e));
+    });
+  },
+  clearFavourites: () => {
+    return new Promise((resolve, reject) => {
+      storage
+        .remove('FAVOURITES')
+        .then(() => resolve(null))
         .catch(e => reject(e));
     });
   },

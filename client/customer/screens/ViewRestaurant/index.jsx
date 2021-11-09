@@ -1,16 +1,10 @@
 import {Alert, Text, View} from 'react-native';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 
 import Context from '../../store/contexts';
 import RestaurantScreen from '../../components/RestaurantScreen';
+import find from 'lodash/find';
 import global from '../../styles/global';
-import includes from 'lodash/includes';
 import {useFocusEffect} from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native';
 
@@ -41,7 +35,7 @@ const ViewRestaurant = () => {
         setError('Error Loading Restaurant');
       });
     loadFavourites().then(res => {
-      if (includes(res, restaurant._id)) {
+      if (find(res, ['_id', restaurant._id])) {
         return setFavourite(true);
       }
       return setFavourite(false);
@@ -53,7 +47,7 @@ const ViewRestaurant = () => {
 
   const handler = () => {
     if (!favourite) {
-      addToFavourites(restaurant._id)
+      addToFavourites(restaurant)
         .then(() => {
           setFavourite(!favourite);
         })
