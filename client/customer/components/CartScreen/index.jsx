@@ -15,6 +15,7 @@ const CartScreen = () => {
   });
   const [total, setTotal] = useState();
   const [refreshing, setRefreshing] = useState(false);
+  const [retries, setRetries] = useState(0);
 
   const fetchData = useCallback(() => {
     setRefreshing(true);
@@ -29,15 +30,19 @@ const CartScreen = () => {
         setRefreshing(false);
       })
       .catch(e => {
-        setRefreshing(false);
-        console.error(e);
-        Alert.alert(
-          'Error',
-          'Error Loading Your Cart Please Try Again Later !!',
-        );
-        setTimeout(() => {
-          navigate('Home');
-        }, 1000);
+        if (retries === 0) {
+          setRetries(retries++);
+          fetchData();
+        } else {
+          setRefreshing(false);
+          Alert.alert(
+            'Error',
+            'Error Loading Your Cart Please Try Again Later !!',
+          );
+          setTimeout(() => {
+            navigate('Home');
+          }, 1000);
+        }
       });
   }, []);
 

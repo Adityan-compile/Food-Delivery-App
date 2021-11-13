@@ -22,10 +22,9 @@ const styles = StyleSheet.create({
     height: height / 4,
   },
   image: {
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
     margin: 10,
     marginTop: 35,
-    elevation: 6,
   },
   infoText: {
     textAlign: 'center',

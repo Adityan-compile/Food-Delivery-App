@@ -23,7 +23,8 @@ const Favourites = () => {
   const handler = () => {
     clearFavourites()
       .then(() => {
-        Alert.alert('Favourites Cleares');
+        setFavourites([]);
+        Alert.alert('Favourites Cleared');
       })
       .catch(e => Alert.alert('Error', 'Cannot Clear Favourites'));
   };
@@ -34,7 +35,7 @@ const Favourites = () => {
   return (
     <View style={global.container}>
       <Header />
-      <FavouritesScreen favourites={favourites} />
+      <FavouritesScreen favourites={favourites} clearFavourites={handler} />
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import {Alert, ScrollView, Text, View} from 'react-native';
+import {Alert, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 
 import {Button} from 'react-native-elements';
 import React from 'react';
@@ -27,20 +27,22 @@ const FavouritesScreen = ({favourites, clearFavourites}) => {
   return (
     <View style={global.container}>
       <ScrollView>
-        <Button
-          containerStyle={{
-            marginHorizontal: 20,
-            marginTop: 10,
-            alignSelf: 'flex-end',
-          }}
-          buttonStyle={{
-            backgroundColor: 'red',
-            borderRadius: 5,
-          }}
-          onPress={() => handler()}
-          title="Clear Favourites"></Button>
+        <TouchableOpacity>
+          <Button
+            containerStyle={{
+              marginHorizontal: 20,
+              marginTop: 10,
+              alignSelf: 'flex-end',
+            }}
+            buttonStyle={{
+              backgroundColor: 'red',
+              borderRadius: 5,
+            }}
+            onPress={() => handler()}
+            title="Clear Favourites"></Button>
+        </TouchableOpacity>
         {favourites.map(elem => (
-          <RestaurantCard data={elem} />
+          <RestaurantCard data={elem} key={elem._id} />
         ))}
       </ScrollView>
     </View>
