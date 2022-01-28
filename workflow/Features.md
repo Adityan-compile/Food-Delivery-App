@@ -23,7 +23,14 @@
    - [x] View Restaurant
    - [x] Add reviews
 
-4. ### Orders
+4. ### Cart
+
+   - [x] Add to Cart
+   - [x] Change Quantity
+   - [x] Total Cart
+   - [x] Remove from Cart
+
+5. ### Orders
 
    - [] Place orders
      - [] Payment Integration
@@ -35,12 +42,7 @@
        - **Declined**
    - [] View Order history
    - [] Cancel Order
-
-5. ### Cart
-   - [] Add to Cart
-   - [] Remove from Cart
-   - [] Change Quantity
-   - [] Total Cart
+     - [] Refund
 
 ---
 
@@ -87,3 +89,5 @@
 ## General
 
 - [x] User Role Management
+- [] Create Screens for Errors and Empty Date
+- [] Determine Distance and Delivery Price According to Location (Open Route Service)

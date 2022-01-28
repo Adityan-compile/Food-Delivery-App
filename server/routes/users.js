@@ -4,7 +4,6 @@ const router = express.Router();
 const {
   login,
   signup,
-  logout,
   regenerateToken,
 } = require('../controllers/authController.js');
 
@@ -22,10 +21,6 @@ const manageRole = require('../middleware/role');
 router.route('/login').post(login);
 
 router.route('/register').post(signup);
-
-router.route('/tokens/regenerate').post(authenticate, regenerateToken);
-
-router.route('/logout').post(logout);
 
 router
   .route('/account/delete')
